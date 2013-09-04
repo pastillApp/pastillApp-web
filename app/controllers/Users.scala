@@ -8,7 +8,7 @@ import play.api.data.Forms._
 import models._
 import views._
 
-class Users extends Controller with Secured {
+object Users extends Controller with Secured {
 
   val userForm = Form(
     tuple(

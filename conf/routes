@@ -11,31 +11,24 @@ POST    /login                              controllers.Application.authenticate
 GET     /logout                             controllers.Application.logout
 
 # User Crud
-GET     /user/:id                          controllers.User.get(id:Long)
-POST    /user                              controllers.User.add
-PUT     /user/:id                          controllers.User.update(id:Long)
-DELETE  /user/:id                          controllers.User.delete(id:Long)
-
-# Medicine Crud
-#GET     /medicine                     		controllers.Medicine.list
-#GET     /medicine/:id                      controllers.Medicine.get(id:Long)
-#POST    /medicine                          controllers.Medicine.add
-#PUT     /medicine/:id                      controllers.Medicine.edit(id:Long)
-#DELETE  /medicine/:id                      controllers.Medicine.delete(id:Long)
+#GET     /user/:id                          controllers.Users.get(id:Long)
+POST    /user                              controllers.Users.add
+PUT     /user/:id                          controllers.Users.update(id:Long)
+DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Dose Crud
-#GET     /medicine/:mId/dose           		controllers.Dose.list(mId:Long)
-#GET     /medicine/:mId/dose/:dId           controllers.Dose.get(mId:Long, dId:Long)
-#POST    /medicine/:mId                     controllers.Dose.add(mId:Long)
-#PUT     /medicine/:mId/dose/:dId           controllers.Dose.edit(mId:Long, dId:Long)
-#DELETE  /medicine/:mId/dose/:dId           controllers.Dose.delete(mId:Long, dId:Long)
+#GET     /medicine/:mId/dose           		controllers.Doses.list(mId:Long)
+#GET     /medicine/:mId/dose/:dId           controllers.Doses.get(mId:Long, dId:Long)
+#POST    /medicine/:mId                     controllers.Doses.add(mId:Long)
+#PUT     /medicine/:mId/dose/:dId           controllers.Doses.edit(mId:Long, dId:Long)
+#DELETE  /medicine/:mId/dose/:dId           controllers.Doses.delete(mId:Long, dId:Long)
 
 # Manager Crud
-#GET     /manager			         		controllers.Manager.list
-#GET     /manager/:id          				controllers.Manager.get(id:Long)
-#POST    /manager                    		controllers.Manager.add
-#PUT     /manager/:id           			controllers.Manager.edit(id:Long)
-#DELETE  /manager/:id          				controllers.Manager.delete(id:Long)
+#GET     /manager			         		controllers.Managers.list
+#GET     /manager/:id          				controllers.Managers.get(id:Long)
+#POST    /manager                    		controllers.Managers.add
+#PUT     /manager/:id           			controllers.Managers.edit(id:Long)
+#DELETE  /manager/:id          				controllers.Managers.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

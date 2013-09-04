@@ -31,7 +31,7 @@ object Application extends Controller with Secured {
    * Login page.
    */
   def login = Action { implicit request =>
-    Ok(html.login(loginForm))
+    Ok(views.html.login(loginForm))
   }
 
   /**

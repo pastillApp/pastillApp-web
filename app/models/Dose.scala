@@ -16,11 +16,11 @@ object Dose {
    * Parse a User from a ResultSet
    */
   val simple = {
-    get[Long]("dose.id") ~
-    get[String]("dose.medicine") ~
-    get[String]("dose.amount") ~
-    get[String]("dose.measure") ~
-    get[Long]("dose.user_id") map {
+    get[Long]("doses.id") ~
+    get[String]("doses.medicine") ~
+    get[String]("doses.amount") ~
+    get[String]("doses.measure") ~
+    get[Long]("doses.user_id") map {
       case id~medicine~amount~measure~userId => Dose(id, medicine, amount, measure, User.findById(userId).get)
     }
   }

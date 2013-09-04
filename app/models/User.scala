@@ -16,13 +16,13 @@ object User {
    * Parse a User from a ResultSet
    */
   val simple = {
-    get[Long]("user.id") ~
-      get[String]("user.email") ~
-      get[String]("user.password") ~
-      get[String]("user.name") ~
-      get[String]("user.surname") ~
-      get[String]("user.address") ~
-      get[String]("user.telephone") map {
+    get[Long]("users.id") ~
+      get[String]("users.email") ~
+      get[String]("users.password") ~
+      get[String]("users.name") ~
+      get[String]("users.surname") ~
+      get[String]("users.address") ~
+      get[String]("users.telephone") map {
         case id ~ email ~ password ~ name ~ surname ~ telephone ~ address => User(Option(id), email, password, name, Option(surname), telephone, address)
       }
   }
