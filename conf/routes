@@ -3,7 +3,39 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           		controllers.Application.index
+
+# User Login
+GET     /login                              controllers.Application.login
+POST    /login                              controllers.Application.authenticate
+GET     /logout                             controllers.Application.logout
+
+# User Crud
+#GET     /user/:id                          controllers.User.get(id:Long)
+#POST    /user                              controllers.User.add
+#PUT     /user/:id                          controllers.User.edit(id:Long)
+#DELETE  /user/:id                          controllers.User.delete(id:Long)
+
+# Medicine Crud
+#GET     /medicine                     		controllers.Medicine.list
+#GET     /medicine/:id                      controllers.Medicine.get(id:Long)
+#POST    /medicine                          controllers.Medicine.add
+#PUT     /medicine/:id                      controllers.Medicine.edit(id:Long)
+#DELETE  /medicine/:id                      controllers.Medicine.delete(id:Long)
+
+# Dose Crud
+#GET     /medicine/:mId/dose           		controllers.Dose.list(mId:Long)
+#GET     /medicine/:mId/dose/:dId           controllers.Dose.get(mId:Long, dId:Long)
+#POST    /medicine/:mId                     controllers.Dose.add(mId:Long)
+#PUT     /medicine/:mId/dose/:dId           controllers.Dose.edit(mId:Long, dId:Long)
+#DELETE  /medicine/:mId/dose/:dId           controllers.Dose.delete(mId:Long, dId:Long)
+
+# Manager Crud
+#GET     /manager			         		controllers.Manager.list
+#GET     /manager/:id          				controllers.Manager.get(id:Long)
+#POST    /manager                    		controllers.Manager.add
+#PUT     /manager/:id           			controllers.Manager.edit(id:Long)
+#DELETE  /manager/:id          				controllers.Manager.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
