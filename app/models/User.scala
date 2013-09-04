@@ -6,7 +6,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class User(id: Long, email: String, password: String, name: String, surname: String, telephone:String)
+case class User(id: Int, email: String, password: String, name: String, surname: String, address:String, telephone:String)
 
 object User {
   
@@ -16,13 +16,14 @@ object User {
    * Parse a User from a ResultSet
    */
   val simple = {
-    get[Long]("user.id") ~
+    get[Int]("user.id") ~
     get[String]("user.email") ~
     get[String]("user.password") ~
     get[String]("user.name") ~
     get[String]("user.surname") ~
+    get[String]("user.address") ~
     get[String]("user.telephone") map {
-      case id~email~password~name~surname~telephone => User(id, email, password, name, surname, telephone)
+      case id~email~password~name~surname~telephone~address => User(id, email, password, name, surname, telephone, address)
     }
   }
   
@@ -31,7 +32,7 @@ object User {
   /**
    * Retrieve a User from email.
    */
-  def findById(id: Long): Option[User] = {
+  def findById(id: Int): Option[User] = {
     DB.withConnection { implicit connection =>
       SQL("select * from user where id = {id}").on(
         'id -> id
@@ -85,7 +86,7 @@ object User {
       SQL(
         """
           insert into user values (
-          {email}, {password}, {name}, {surname} {telephone}
+          {email}, {password}, {name}, {surname}, {address}, {telephone}
           )
         """
       ).on(
