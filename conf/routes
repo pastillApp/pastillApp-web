@@ -11,10 +11,10 @@ POST    /login                              controllers.Application.authenticate
 GET     /logout                             controllers.Application.logout
 
 # User Crud
-#GET     /user/:id                          controllers.User.get(id:Long)
-#POST    /user                              controllers.User.add
-#PUT     /user/:id                          controllers.User.edit(id:Long)
-#DELETE  /user/:id                          controllers.User.delete(id:Long)
+GET     /user/:id                          controllers.User.get(id:Long)
+POST    /user                              controllers.User.add
+PUT     /user/:id                          controllers.User.update(id:Long)
+DELETE  /user/:id                          controllers.User.delete(id:Long)
 
 # Medicine Crud
 #GET     /medicine                     		controllers.Medicine.list

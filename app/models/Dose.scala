@@ -6,20 +6,21 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Dose (id:Int, medicine:String, amount:String, measure:String, user:User)
+case class Dose (id:Long, medicine:String, amount:String, measure:String, user:User)
 
 object Dose {
+  
   // -- Parsers
   
   /**
    * Parse a User from a ResultSet
    */
   val simple = {
-    get[Int]("dose.id") ~
+    get[Long]("dose.id") ~
     get[String]("dose.medicine") ~
     get[String]("dose.amount") ~
     get[String]("dose.measure") ~
-    get[Int]("dose.user_id") map {
+    get[Long]("dose.user_id") map {
       case id~medicine~amount~measure~userId => Dose(id, medicine, amount, measure, User.findById(userId).get)
     }
   }
@@ -29,7 +30,7 @@ object Dose {
   /**
    * Retrieve a Dose from id.
    */
-  def findById(id: Int): Option[Dose] = {
+  def findById(id: Long): Option[Dose] = {
     DB.withConnection { implicit connection =>
       SQL("select * from doses where id = {id}").on(
         'id -> id
