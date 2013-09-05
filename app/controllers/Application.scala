@@ -15,8 +15,9 @@ object Application extends Controller with Secured {
   def index = IsAuthenticated { username =>
     _ =>
       User.findByEmail(username).map { user =>
-        Ok("Secured")
+        Redirect(routes.Doses.listByUser(user.id.get))
       }.getOrElse(Forbidden)
+
   }
   // -- Authentication
 
