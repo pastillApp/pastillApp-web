@@ -18,7 +18,7 @@ DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Contact Crud
 #GET	 /contact/:id					    controllers.Contacts.get(id:Long)
-#POST    /contact                              controllers.Contacts.add
+POST    /contact                              controllers.Contacts.create
 #PUT     /contact/:id                          controllers.Contacts.update(id:Long)
 #DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
 
