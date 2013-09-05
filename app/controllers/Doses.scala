@@ -66,9 +66,14 @@ object Doses extends Controller with Secured {
       } else Results.Forbidden
   }
 
-  /**
-   * Display a form pre-filled with an existing Contact.
-   */
+  def addForm(uId: Long) = IsAuthenticated { username =>
+    implicit request =>
+      val user = User.findById(uId).get
+      if (Application.isManagerOf(user)) {
+        Ok(html.doses.create(uId))
+      } else NotFound
+  }
+
   def editForm(dId: Long) = Action {
     implicit request =>
       Dose.findById(dId) match {

@@ -7,6 +7,7 @@
 			<h3>@dose.medicine Alert!</h3>
 			<p>You need to take @dose.amount @dose.measure in *** minutes.</p>
 		</div>
-		<a href="@routes.Doses.update(dose.id)" title="Edit Alert" class="span2 btn btn-danger">Modify</a>
+		<a href="@routes.Doses.editForm(dose.id.get)" title="Edit Alert" class="span2 btn btn-danger">Modify</a>
 	}
+	<a href="@routes.Doses.addForm" title="Add Alert" class="span12 btn btn-danger">Modify</a>
 }

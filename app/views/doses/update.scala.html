@@ -1,10 +1,9 @@
-@* create Template File *@
 @(dose:Dose)(implicit flash:Flash)
 
 @import Option._
 @import helper._
 
-@main ("Update Dose"){
+@main ("Update Dose") {
 	@helper.form(action = routes.Doses.update(dose.id.get)) {
 	   <div class="span12">
 	     <label title="Medicine" for="fragment">Medicine:</label><br>
@@ -20,7 +19,7 @@
 	   </div>
 	   <div class="span12">
 	     <label title="User" for="user">User:</label><br>
-	     <input type="text" name="user" id="user" placeholder="Place the user" value="@dose.user"/>
+	     <input type="text" name="user" id="user" placeholder="Place the user" value="@dose.user.id.get"/>
 	   </div>
 	   <div class="span12">
 	   	 <input type="submit" title="Submit for validation" value="Check" class="button"/>
