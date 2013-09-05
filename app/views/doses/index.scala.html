@@ -3,9 +3,10 @@
 
 @main("Index") {
 	@for(dose <- seq){
-		<div class="span12">
-			<h3>@dose.medicine</h3>
-			<p>@dose.amount @dose.measure</p>
+		<div class="span10 btn">
+			<h3>@dose.medicine Alert!</h3>
+			<p>You need to take @dose.amount @dose.measure in *** minutes.</p>
 		</div>
+		<a href="@routes.Doses.editForm(dose.id.get)" title="Edit Alert" class="span2 btn btn-danger">Modify</a>
 	}
 }

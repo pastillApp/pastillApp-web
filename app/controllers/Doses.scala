@@ -46,7 +46,7 @@ object Doses extends Controller with Secured {
         Ok("deleted")
       } else Results.Forbidden
   }
-  
+
   /**
    * List all doses by an user Id
    */
@@ -57,15 +57,26 @@ object Doses extends Controller with Secured {
         Ok(html.doses.index(Dose.findByUser(user)))
       } else Results.Forbidden
   }
-  
-  def get(dId: Long) = IsAuthenticated { username => 
+
+  def get(dId: Long) = IsAuthenticated { username =>
     implicit request =>
       val dose = Dose.findById(dId).get
-      if(Application.isManagerOf(dose.user)) {
+      if (Application.isManagerOf(dose.user)) {
         Ok("get")
-      } else Results.Forbidden        
+      } else Results.Forbidden
   }
-  
+
+  /**
+   * Display a form pre-filled with an existing Contact.
+   */
+  def editForm(dId: Long) = Action {
+    implicit request =>
+      Dose.findById(dId) match {
+        case Some(dose) => Ok(html.doses.update(dose))
+        case _ => NotFound
+      }
+  }
+
   def update(dId: Long) = IsAuthenticated { username =>
     implicit request =>
       doseForm.bindFromRequest.fold(
@@ -77,7 +88,7 @@ object Doses extends Controller with Secured {
               Dose.update(dId, dose)
               Ok("edited")
             } else Results.Forbidden
-        })   
+        })
   }
 
 }

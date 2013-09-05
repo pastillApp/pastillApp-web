@@ -26,6 +26,7 @@ POST    /contact                              controllers.Contacts.create
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
 POST    /user/:uId/dose                  		controllers.Doses.create(uId:Long)
 GET     /dose/:dId           					controllers.Doses.get(dId:Long)
+GET     /dose/:dId/edit           				controllers.Doses.editForm(dId:Long)
 PUT     /dose/:dId           					controllers.Doses.update(dId:Long)
 DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)
 
