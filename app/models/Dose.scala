@@ -5,8 +5,9 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 import play.api.mvc.RequestHeader
+import java.util.Date
 
-case class Dose(id: Option[Long], medicine: String, amount: String, measure: String, user: User)
+case class Dose(id: Option[Long], medicine: String, amount: String, measure: String, period : Long, created:Date, updated:Date, user: User)
 
 object Dose {
 
@@ -20,8 +21,11 @@ object Dose {
       get[String]("doses.medicine") ~
       get[String]("doses.amount") ~
       get[String]("doses.measure") ~
+      get[Long]("doses.period") ~
+      get[Date]("doses.created") ~
+      get[Date]("doses.updated") ~
       get[Long]("doses.user_id") map {
-        case id ~ medicine ~ amount ~ measure ~ userId => Dose(Option(id), medicine, amount, measure, User.findById(userId).get)
+        case id ~ medicine ~ amount ~ measure ~ period ~ created ~ updated ~ userId => Dose(Option(id), medicine, amount, measure, period, created, updated, User.findById(userId).get)
       }
   }
 
@@ -51,16 +55,20 @@ object Dose {
    * Create a Dose.
    */
   def create(dose: Dose): Dose = {
+    val date = new Date
     DB.withConnection { implicit connection =>
       SQL(
         """
-          insert into doses (medicine, amount, measure, user_id) values (
-          {medicine}, {amount}, {measure}, {user_id}
+          insert into doses (medicine, amount, measure, period, created, updated, user_id) values (
+          {medicine}, {amount}, {measure}, {period}, {created}, {updated}, {user_id}
           )
         """).on(
           'medicine -> dose.medicine,
           'amount -> dose.amount,
           'measure -> dose.measure,
+          'period -> dose.period,
+          'created -> date,
+          'updated -> date,
           'user_id -> dose.user.id).executeUpdate()
 
       dose
@@ -75,13 +83,16 @@ object Dose {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update doses values set amount = {amount}, measure = {measure}, medicine = {medicine}, 
+          update doses values set period = {period}, amount = {amount}, measure = {measure}, medicine = {medicine}, created = {created}, updated = {updated},
           user_id = {user_id} where id = {id}
           )
         """).on(
           'amount -> dose.amount,
           'measure -> dose.measure,
           'medicine -> dose.medicine,
+          'period -> dose.period,
+          'created -> dose.created,
+          'updated -> dose.updated,
           'user_id -> dose.user.id.get,
           'id -> id).executeUpdate()
 
@@ -103,6 +114,14 @@ object Dose {
   def findAll(): Seq[Dose] = {
     DB.withConnection { implicit connection =>
       SQL("select * from doses").as(Dose.simple *)
+    }
+  }
+  
+  def retrieveLastByUser(uId:Long, last:Long) : Seq[Dose] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from doses where id = {id} and updated < {last}").on(
+          'id -> uId,
+          'last -> last).as(Dose.simple *)      
     }
   }
 

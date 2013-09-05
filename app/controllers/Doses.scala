@@ -15,6 +15,9 @@ object Doses extends Controller with Secured {
       "medicine" -> text,
       "amount" -> text,
       "measure" -> text,
+      "period" -> number,
+      "created" -> date,
+      "updated" -> date,
       "user_id" -> number))
 
   /**
@@ -25,11 +28,11 @@ object Doses extends Controller with Secured {
       doseForm.bindFromRequest.fold(
         errors => BadRequest,
         {
-          case (medicine, amount, measure, user_id) =>
+          case (medicine, amount, measure, period, created, updated, user_id) =>
             val user = User.findById(user_id).get
             if (Application.isManagerOf(user)) {
               val dose = Dose.create(
-                Dose(None, medicine, amount, measure, user))
+                Dose(None, medicine, amount, measure, period, created, updated, user))
               Ok("")
             } else Results.Forbidden
         })
@@ -73,13 +76,22 @@ object Doses extends Controller with Secured {
       doseForm.bindFromRequest.fold(
         errors => BadRequest,
         {
-          case (medicine, amount, measure, user_id) =>
+          case (medicine, amount, measure, period, created, updated, user_id) =>
             val dose = Dose.findById(dId).get
             if (Application.isManagerOf(dose.user)) {
               Dose.update(dId, dose)
               Ok("edited")
             } else Results.Forbidden
         })   
+  }
+  
+  def retrieveDosesByUser(uId:Long, last:Long) = IsAuthenticated { username =>
+    implicit request =>
+      val user = User.findById(uId).get
+      if(Application.isManagerOf(user)) {
+        Dose.retrieveLastByUser(uId, last)
+        Ok("")
+      } else Results.Forbidden   
   }
 
 }

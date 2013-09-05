@@ -18,13 +18,14 @@ DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Contact Crud
 GET  /user/:uId/contact						controllers.Contacts.listByUser(uId:Long)
-GET	 /contact/:id					    controllers.Contacts.get(id:Long)
+#GET	 /contact/:id					    controllers.Contacts.get(id:Long)
 POST    /contact                              controllers.Contacts.create
 PUT     /contact/:id                          controllers.Contacts.edit(id:Long)
 DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
 
 # Dose Crud
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
+GET		/user/:uId/retrieveDose					controllers.Doses.retrieveDosesByUser(uId:Long, last:Long)
 POST    /user/:uId/dose/                  		controllers.Doses.add(uId:Long)
 GET     /dose/:dId           					controllers.Doses.get(dId:Long)
 PUT     /dose/:dId           					controllers.Doses.edit(dId:Long)
@@ -32,7 +33,7 @@ DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)
 
 # Manager Crud
 GET     /user/:uId/manager			         controllers.Managers.listByManagee(uId:Long)
-GET     /user/:uId/managee          				controllers.Managers.listByManager(uId:Long)
+GET     /user/:uId/managee          		controllers.Managers.listByManager(uId:Long)
 #POST    /manager                    		controllers.Managers.add
 #PUT     /manager/:id           			controllers.Managers.edit(id:Long)
 #DELETE  /manager/:id          				controllers.Managers.delete(id:Long)
