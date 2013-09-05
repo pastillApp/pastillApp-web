@@ -75,9 +75,8 @@ object Dose {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update doses values set amount = {amount}, measure = {measure}, medicine = {medicine}, 
+          update doses set amount = {amount}, measure = {measure}, medicine = {medicine}, 
           user_id = {user_id} where id = {id}
-          )
         """).on(
           'amount -> dose.amount,
           'measure -> dose.measure,
@@ -85,8 +84,7 @@ object Dose {
           'user_id -> dose.user.id.get,
           'id -> id).executeUpdate()
 
-      dose
-
+      Dose(Some(id), dose.medicine, dose.amount, dose.measure, dose.user)
     }
   }
 

@@ -20,7 +20,27 @@
 		<script src="../js/vendor/custom.modernizr.js"></script>
 	</head>
 	<body>
-		<p>Name wants to add you as a manager:</p>
-		<a class="btn btn-success">Accept</a> or <a class="btn btn-decline">Decline</a> 
+		<div class="container-fluid">
+			<h1>pastillApp</h1>
+			<h2>Add contact</h2>
+			<form class="well">
+				<label>Telephone</label>
+				<input type="tel" id="telephone" name="telephone" />
+				<label>Name</label>
+				<input type="text" id="name" name="name" />
+				<label>Surname</label>
+				<input type="text" id="surname" name="surname" />
+				<label>Genre</label>
+				<select id="genre" name="genre">
+					<option value="U">Undefined</option>
+					<option value="M">Male</option>
+					<option value="F">Female</option>
+				</select>
+				<br/>
+				<input type="submit" class="btn btn-primary" value="Submit" />
+			</form>
+		</div>
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
 	</body>
 </html>

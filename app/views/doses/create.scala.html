@@ -4,8 +4,8 @@
 @import Option._
 @import helper._
 
-@main ("Create Dose"){
-	@helper.form(action = routes.Doses.create(id)) {
+@main("Create Dose"){
+	<form method="POST" action="@routes.Doses.create(id)">
 	   <div class="span12">
 	     <label title="Medicine" for="fragment">Medicine:</label><br>
 	     <input type="text" name="name" id="name" placeholder="Place a Medicine"/>
@@ -18,12 +18,15 @@
 	     <label title="Measure" for="measure">Measure:</label><br>
 	     <input type="text" name="measure" id="measure" placeholder="Place the measure"/>
 	   </div>
-	   <div class="span12">
-	     <label title="User" for="user">User:</label><br>
-	     <input type="text" name="user" id="user" placeholder="Place the user"/>
+	   	   <div class="span12">
+	     <label title="User" for="user_id">User:</label><br>
+	     <input class="span12" type="text" name="user_id" id="user_id" placeholder="Place the user"/>
 	   </div>
 	   <div class="span12">
-	   	 <input type="submit" title="Submit for validation" value="Check" class="button"/>
+	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
 	   </div>
-	}
+	   <div class="span12">
+	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   </div>
+	</form>
 }

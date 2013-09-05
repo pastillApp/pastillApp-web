@@ -12,7 +12,7 @@ GET     /logout                             controllers.Application.logout
 
 # User Crud
 #GET     /user/:id                          controllers.Users.get(id:Long)
-POST    /user                              controllers.Users.add
+POST    /user                              controllers.Users.create
 PUT     /user/:id                          controllers.Users.update(id:Long)
 DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
@@ -24,11 +24,11 @@ POST    /contact                              controllers.Contacts.create
 
 # Dose Crud
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
-POST    /user/:uId/dose                  		controllers.Doses.create(uId:Long)
-GET     /dose/:dId           					controllers.Doses.get(dId:Long)
-GET     /dose/:dId/edit           				controllers.Doses.editForm(dId:Long)
-PUT     /dose/:dId           					controllers.Doses.update(dId:Long)
-DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)
+GET     /user/:uId/dose/create              	controllers.Doses.createForm(uId:Long)
+POST    /user/:uId/dose/create              	controllers.Doses.create(uId:Long)
+GET     /dose/:dId/edit           				controllers.Doses.updateForm(dId:Long)
+POST    /dose/:dId/edit           				controllers.Doses.update(dId:Long)
+POST  	/dose/:dId/delete         				controllers.Doses.delete(dId:Long)
 
 # Manager Crud
 #GET     /manager			         		controllers.Managers.list

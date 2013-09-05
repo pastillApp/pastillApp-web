@@ -106,9 +106,8 @@ object User {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update users values set email = {email}, password = {password}, name = {name}, 
+          update users set email = {email}, password = {password}, name = {name}, 
           surname = {surname}, address = {address}, zip_code = {zip_code} telephone = {telephone} where id = {id}
-          )
         """).on(
           'email -> user.email,
           'password -> user.password,
