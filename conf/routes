@@ -17,17 +17,17 @@ PUT     /user/:id                          controllers.Users.update(id:Long)
 DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Contact Crud
-#GET		/contact/:id					   controllers.Contacts.get(id:Long)
+#GET	 /contact/:id					    controllers.Contacts.get(id:Long)
 #POST    /contact                              controllers.Contacts.add
 #PUT     /contact/:id                          controllers.Contacts.update(id:Long)
 #DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
 
 # Dose Crud
-#GET     /medicine/:mId/dose           		controllers.Doses.list(mId:Long)
-#GET     /medicine/:mId/dose/:dId           controllers.Doses.get(mId:Long, dId:Long)
-#POST    /medicine/:mId                     controllers.Doses.add(mId:Long)
-#PUT     /medicine/:mId/dose/:dId           controllers.Doses.edit(mId:Long, dId:Long)
-#DELETE  /medicine/:mId/dose/:dId           controllers.Doses.delete(mId:Long, dId:Long)
+GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
+POST    /user/:uId/dose/                  		controllers.Doses.add(uId:Long)
+GET     /dose/:dId           					controllers.Doses.get(dId:Long)
+PUT     /dose/:dId           					controllers.Doses.edit(dId:Long)
+DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)
 
 # Manager Crud
 #GET     /manager			         		controllers.Managers.list

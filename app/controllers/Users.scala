@@ -56,7 +56,9 @@ object Users extends Controller with Secured {
    */
   def delete(id: Long) = IsAuthenticated { username =>
     implicit request =>
-      request.session.get("id") match {
+      val currentUser = User.findByEmail(request.session.get("email").get).get
+      println(currentUser.id)
+      currentUser.id.get match {
         case uId if uId == id =>
           User.delete(id)
           Ok

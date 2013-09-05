@@ -5,7 +5,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class Contact (id:Long, telephone:String, name:String, surname:String, genre:String, user:User)
+case class Contact (id:Option[Long], name:String, surname:String, genre:String, telephone:String, user:User)
 
 object Contact {
 	// -- Parsers
@@ -15,12 +15,12 @@ object Contact {
    */
   val simple = {
     get[Long]("contacts.id") ~
-    get[String]("contacts.telephone") ~
     get[String]("contacts.name") ~
     get[String]("contacts.surname") ~
     get[String]("contacts.genre") ~
+    get[String]("contacts.telephone") ~
     get[Long]("contacts.user_id") map {
-      case id~telephone~name~surname~genre~userId => Contact(id, telephone, name, surname, genre, User.findById(userId).get)
+      case id~name~surname~genre~telephone~userId => Contact(Option(id), name, surname, genre, telephone, User.findById(userId).get)
     }
   }
   
@@ -55,15 +55,15 @@ object Contact {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          insert into contacts values (
-          {telephone}, {name}, {surname}, {genre}, {user_id}
+          insert into contacts (name, surname, genre, user_id, telephone) values (
+           {name}, {surname}, {genre}, {user_id}, {telephone}
           )
         """
       ).on(
-        'telephone -> contact.telephone,
         'name -> contact.name,
         'surname -> contact.surname,
         'genre -> contact.genre,
+        'telephone -> contact.telephone,
         'user_id -> contact.user.id
       ).executeUpdate()
       
@@ -79,15 +79,15 @@ object Contact {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update contacts values set telephone = {telephone}, name = {name}, surname = {surname}, 
-          genre = {genre}, user_id = {user_id} where id = {id}
+          update contacts values set name = {name}, surname = {surname}, 
+          genre = {genre}, telephone = {telephone}, user_id = {user_id} where id = {id}
           )
         """).on(
-          'telephone -> contact.telephone,
           'name -> contact.name,
           'surname -> contact.surname,
           'genre -> contact.genre,
           'user_id -> contact.user.id,
+          'telephone -> contact.telephone,
           'id -> id).executeUpdate()
 
       contact

@@ -134,14 +134,14 @@ object User {
     }
   }
   
-  def getManagerByManageeId(id:Long) : Seq[User] = {
+  def getManagersByManageeId(id:Long) : Seq[User] = {
     DB.withConnection { implicit connection =>
       SQL("""select users.id, email, name, surname, address, telephone, password, zip_code from users, manage where users.id=manage.manager and manage.managee = {id}""").on(
         'id -> id).as(User.simple *)    
     }
   }
   
-  def getManageeByManagerId(id:Long) : Seq[User] = {
+  def getManageesByManagerId(id:Long) : Seq[User] = {
     DB.withConnection { implicit connection =>
       SQL("""select users.id, email, name, surname, address, telephone, password, zip_code from users, manage where users.id=manage.managee and manage.manager = {id}""").on(
         'id -> id).as(User.simple *)    
