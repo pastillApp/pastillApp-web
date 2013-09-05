@@ -23,7 +23,7 @@ object Users extends Controller with Secured {
   /**
    * Add a project.
    */
-  def add = Action {
+  def create = Action {
     implicit request =>
       userForm.bindFromRequest.fold(
         errors => BadRequest,
@@ -31,7 +31,7 @@ object Users extends Controller with Secured {
           case (email, password, name, surname, address, zip, telephone) =>
             val user = User.create(
               User(None, email, password, name, surname, address, zip, telephone))
-            Ok("")
+            Redirect(routes.Application.index)
         })
   }
 
@@ -44,13 +44,12 @@ object Users extends Controller with Secured {
         errors => BadRequest,
         {
           case (email, password, name, surname, address, zip, telephone) =>
-            val user = User.update(id,
-              User(None, email, password, name, surname, address, zip, telephone))
-            Ok("")
+            val user = User.update(User(Some(id), email, password, name, surname, address, zip, telephone))
+            Redirect(routes.Application.index)
         })
 
   }
-  
+
   /**
    * Delete a project.
    */

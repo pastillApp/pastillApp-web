@@ -1,0 +1,43 @@
+@()(implicit flash:Flash)
+
+@import Option._
+@import helper._
+
+@main("Create User"){
+	<form method="POST" action="@routes.Users.create">
+	   <div class="span12">
+	     <label title="email" for="fragment">Medicine:</label><br>
+	     <input type="email" name="email" id="email" placeholder="me@@example.com"/>
+	   </div>
+	   <div class="span12">
+	     <label title="Password" for="password">Medicine:</label><br>
+	     <input type="password" name="password" id="password"/>
+	   </div>
+	   <div class="span12">
+	     <label title="Mame" for="name">Name:</label><br>
+	     <input type="text" name="name" id="name" placeholder=""/>
+	   </div>
+	   <div class="span12">
+	     <label title="Surname" for="surname">Surname:</label><br>
+	     <input type="text" name="surname" id="surname" placeholder=""/>
+	   </div>
+	   <div class="span12">
+	     <label title="Address" for="address">Address:</label><br>
+	     <input type="text" name="address" id="address" placeholder=""/>
+	   </div>
+	   	   <div class="span12">
+	     <label title="Zip Code" for="zip_code">Zip Code:</label><br>
+	     <input type="number" name="zip_code" id="zip_code" placeholder=""/>
+	   </div>
+	   	   <div class="span12">
+	     <label title="Telephone" for="telephone">Telephone:</label><br>
+	     <input type="tel" name="telephone" id="telephone" placeholder=""/>
+	   </div>
+	   <div class="span12">
+	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   </div>
+	   <div class="span12">
+	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   </div>
+	</form>
+}

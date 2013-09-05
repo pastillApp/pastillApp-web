@@ -81,7 +81,6 @@ object Contact {
         """
           update contacts set name = {name}, surname = {surname}, 
           genre = {genre}, telephone = {telephone}, user_id = {user_id} where id = {id}
-          )
         """).on(
           'name -> contact.name,
           'surname -> contact.surname,

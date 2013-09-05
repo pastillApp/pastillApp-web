@@ -102,13 +102,12 @@ object User {
   /**
    * Create a User.
    */
-  def update(id: Long, user: User): User = {
+  def update(user: User): User = {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update users values set email = {email}, password = {password}, name = {name}, 
+          update users set email = {email}, password = {password}, name = {name}, 
           surname = {surname}, address = {address}, zip_code = {zip_code} telephone = {telephone} where id = {id}
-          )
         """).on(
           'email -> user.email,
           'password -> user.password,
@@ -117,7 +116,7 @@ object User {
           'address -> user.address,
           'zip_code -> user.zip,
           'telephone -> user.telephone,
-          'id -> id).executeUpdate()
+          'id -> user.id.get).executeUpdate()
 
       user
 
