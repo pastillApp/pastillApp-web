@@ -4,6 +4,7 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import java.util.Date
 
 import models._
 import views._
@@ -16,8 +17,6 @@ object Doses extends Controller with Secured {
       "amount" -> text,
       "measure" -> text,
       "period" -> number,
-      "created" -> date,
-      "updated" -> date,
       "user_id" -> number))
 
   /**
@@ -28,11 +27,12 @@ object Doses extends Controller with Secured {
       doseForm.bindFromRequest.fold(
         errors => BadRequest("Petó"),
         {
-          case (medicine, amount, measure, period, created, updated, user_id) =>
+          case (medicine, amount, measure, period, user_id) =>
             val user = User.findById(user_id).get
             if (Application.isManagerOf(user)) {
+              val date = new Date
               val dose = Dose.create(
-                Dose(None, medicine, amount, measure, period, created, updated, user))
+                Dose(None, medicine, amount, measure, period, date, date, user))
               Redirect(routes.Application.index)
             } else Results.Forbidden
         })
@@ -43,8 +43,9 @@ object Doses extends Controller with Secured {
       doseForm.bindFromRequest.fold(
         errors => BadRequest("Petó"),
         {
-          case (medicine, amount, measure, period, created, updated, user_id) =>
-            val dose = Dose(Some(dId), medicine, amount, measure,  period, created, updated, User.findById(user_id).get)
+          case (medicine, amount, measure, period, user_id) =>
+            val pDose = Dose.findById(dId).get
+            val dose = Dose(Some(dId), medicine, amount, measure,  period, pDose.created, pDose.updated, User.findById(user_id).get)
             if (Application.isManagerOf(dose.user)) {
               Dose.update(dose)
               Redirect(routes.Application.index)

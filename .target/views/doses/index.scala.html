@@ -5,7 +5,7 @@
 	@for(dose <- seq){
 		<div class="span10 btn">
 			<h3>@dose.medicine Alert!</h3>
-			<p>You need to take @dose.amount @dose.measure in *** minutes.</p>
+			<p>You need to take @dose.amount @dose.measure in @dose.amount secconds.</p>
 		</div>
 		<a href="@routes.Doses.updateForm(id)" title="Edit Alert" class="span2 btn">Update</a>
 		<a href="@routes.Doses.delete(dose.id.get)" title="Edit Alert" class="span2 btn" data-method="POST">Delete</a>
