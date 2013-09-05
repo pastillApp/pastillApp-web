@@ -5,7 +5,7 @@
 @import helper._
 
 @main ("Create Dose"){
-	@helper.form(action = routes.Doses.add(id)) {
+	@helper.form(action = routes.Doses.create(id)) {
 	   <div class="span12">
 	     <label title="Medicine" for="fragment">Medicine:</label><br>
 	     <input type="text" name="name" id="name" placeholder="Place a Medicine"/>

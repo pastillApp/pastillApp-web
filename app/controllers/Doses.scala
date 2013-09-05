@@ -54,9 +54,7 @@ object Doses extends Controller with Secured {
     implicit request =>
       val user = User.findById(uId).get
       if (Application.isManagerOf(user)) {
-        //Dose.delete(uId)
-        Dose.findByUser(user)
-        Ok("listed")
+        Ok(html.doses.index(Dose.findByUser(user)))
       } else Results.Forbidden
   }
   
@@ -68,7 +66,7 @@ object Doses extends Controller with Secured {
       } else Results.Forbidden        
   }
   
-  def edit(dId: Long) = IsAuthenticated { username =>
+  def update(dId: Long) = IsAuthenticated { username =>
     implicit request =>
       doseForm.bindFromRequest.fold(
         errors => BadRequest,

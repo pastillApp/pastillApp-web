@@ -24,9 +24,9 @@ POST    /contact                              controllers.Contacts.create
 
 # Dose Crud
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
-POST    /user/:uId/dose/                  		controllers.Doses.create(uId:Long)
+POST    /user/:uId/dose                  		controllers.Doses.create(uId:Long)
 GET     /dose/:dId           					controllers.Doses.get(dId:Long)
-PUT     /dose/:dId           					controllers.Doses.edit(dId:Long)
+PUT     /dose/:dId           					controllers.Doses.update(dId:Long)
 DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)
 
 # Manager Crud

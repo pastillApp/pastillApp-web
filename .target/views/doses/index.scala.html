@@ -1,11 +1,11 @@
 @* index Template File *@
 @(seq: Seq[Dose])
 
-@main {
+@main("Index") {
 	@for(dose <- seq){
 		<div class="dose">
 			<h3>@dose.medicine</h3>
-			<p>@dose.amount @dose.</p>
+			<p>@dose.amount @dose.measure</p>
 		</div>
 	}
 }

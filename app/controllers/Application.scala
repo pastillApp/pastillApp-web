@@ -40,7 +40,10 @@ object Application extends Controller with Secured {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(html.login(formWithErrors)),
-      user => Redirect(routes.Application.index).withSession("email" -> user._1))
+      user => Redirect({
+        val aUser = User.findByEmail(user._1).get
+        routes.Doses.listByUser(aUser.id.get)
+      }).withSession("email" -> user._1))
   }
 
   /**
@@ -50,7 +53,7 @@ object Application extends Controller with Secured {
     Redirect(routes.Application.login).withNewSession.flashing(
       "success" -> "You've been logged out")
   }
-  
+
   def isManagerOf(user: User)(implicit request: RequestHeader) = {
     val currentUser = User.findByEmail(request.session.get("email").get).get
     println(currentUser.id)
@@ -87,5 +90,5 @@ trait Secured {
   def IsAuthenticated(f: => String => Request[AnyContent] => Result) = Security.Authenticated(username, onUnauthorized) { user =>
     Action(request => f(user)(request))
   }
-   
+
 }
