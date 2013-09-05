@@ -53,7 +53,7 @@ object Contacts extends Controller with Secured{
       } else Results.Forbidden
   }
   
-  def edit(id:Long) = IsAuthenticated { username =>
+  def update(id:Long) = IsAuthenticated { username =>
     implicit request =>
       contactForm.bindFromRequest.fold(
         errors => BadRequest,
@@ -61,7 +61,7 @@ object Contacts extends Controller with Secured{
           case (name, surname, genre, telephone, user_id) =>
             val contact = Contact.findById(id).get
             if (Application.isManagerOf(contact.user)) {
-              Contact.update(id, contact)
+              Contact.update(Contact(Some(id), name, surname, genre, telephone, User.findById(user_id).get))
               Ok("edited")
             } else Results.Forbidden
         })   

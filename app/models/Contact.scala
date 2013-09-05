@@ -75,11 +75,11 @@ object Contact {
   /**
    * Update a Contact.
    */
-  def update(id: Long, contact: Contact): Contact = {
+  def update(contact: Contact): Contact = {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          update contacts values set name = {name}, surname = {surname}, 
+          update contacts set name = {name}, surname = {surname}, 
           genre = {genre}, telephone = {telephone}, user_id = {user_id} where id = {id}
           )
         """).on(
@@ -88,10 +88,9 @@ object Contact {
           'genre -> contact.genre,
           'user_id -> contact.user.id,
           'telephone -> contact.telephone,
-          'id -> id).executeUpdate()
+          'id -> contact.id.get).executeUpdate()
 
       contact
-
     }
   }
 
