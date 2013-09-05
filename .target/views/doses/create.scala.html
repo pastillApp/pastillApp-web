@@ -1,0 +1,26 @@
+@* create Template File *@
+@(param: Any)
+
+@main {
+	@helper.form(action = routes.) {
+	   <p>
+	     <label title="Medicine" for="fragment">Medicine:</label><br>
+	     <input type="text" name="name" id="name" placeholder="Place a Medicine"/>
+	   </p>
+	   <p>
+	     <label title="Amount" for="amount">Medicine:</label><br>
+	     <input type="text" name="amount" id="amount" placeholder="Place the amount required"/>
+	   </p>
+	   <p>
+	     <label title="Measure" for="measure">Measure:</label><br>
+	     <input type="text" name="measure" id="measure" placeholder="Place the measure"/>
+	   </p>
+	   <p>
+	     <label title="User" for="user">User:</label><br>
+	     <input type="text" name="user" id="user" placeholder="Place the user"/>
+	   </p>
+	   <p>
+	   	 <input type="submit" title="Submit for validation" value="Check" class="button"/>
+	   </p>
+	   }
+}

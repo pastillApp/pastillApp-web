@@ -24,7 +24,7 @@ DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Dose Crud
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
-POST    /user/:uId/dose/                  		controllers.Doses.add(uId:Long)
+POST    /user/:uId/dose/                  		controllers.Doses.create(uId:Long)
 GET     /dose/:dId           					controllers.Doses.get(dId:Long)
 PUT     /dose/:dId           					controllers.Doses.edit(dId:Long)
 DELETE  /dose/:dId           					controllers.Doses.delete(dId:Long)

@@ -20,7 +20,7 @@ object Doses extends Controller with Secured {
   /**
    * Add a project.
    */
-  def add(uId: Long) = IsAuthenticated { username =>
+  def create(uId: Long) = IsAuthenticated { username =>
     implicit request =>
       doseForm.bindFromRequest.fold(
         errors => BadRequest,
