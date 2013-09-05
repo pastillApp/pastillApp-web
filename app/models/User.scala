@@ -102,7 +102,7 @@ object User {
   /**
    * Create a User.
    */
-  def update(id: Long, user: User): User = {
+  def update(user: User): User = {
     DB.withConnection { implicit connection =>
       SQL(
         """
@@ -116,7 +116,7 @@ object User {
           'address -> user.address,
           'zip_code -> user.zip,
           'telephone -> user.telephone,
-          'id -> id).executeUpdate()
+          'id -> user.id.get).executeUpdate()
 
       user
 

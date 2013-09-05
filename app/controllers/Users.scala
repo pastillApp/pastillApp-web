@@ -44,8 +44,7 @@ object Users extends Controller with Secured {
         errors => BadRequest,
         {
           case (email, password, name, surname, address, zip, telephone) =>
-            val user = User.update(id,
-              User(None, email, password, name, surname, address, zip, telephone))
+            val user = User.update(User(Some(id), email, password, name, surname, address, zip, telephone))
             Redirect(routes.Application.index)
         })
 

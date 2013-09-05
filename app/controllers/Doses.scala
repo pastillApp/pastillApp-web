@@ -43,6 +43,7 @@ object Doses extends Controller with Secured {
           case (medicine, amount, measure, user_id) =>
             val dose = Dose(Some(dId), medicine, amount, measure, User.findById(user_id).get)
             if (Application.isManagerOf(dose.user)) {
+              Dose.update(dose)
               Redirect(routes.Application.index)
             } else Results.Forbidden
         })

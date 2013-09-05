@@ -71,7 +71,7 @@ object Dose {
   /**
    * Update a User.
    */
-  def update(id: Long, dose: Dose): Dose = {
+  def update(dose: Dose): Dose = {
     DB.withConnection { implicit connection =>
       SQL(
         """
@@ -82,9 +82,8 @@ object Dose {
           'measure -> dose.measure,
           'medicine -> dose.medicine,
           'user_id -> dose.user.id.get,
-          'id -> id).executeUpdate()
-
-      Dose(Some(id), dose.medicine, dose.amount, dose.measure, dose.user)
+          'id -> dose.id.get).executeUpdate()
+     dose
     }
   }
 
