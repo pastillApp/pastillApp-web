@@ -1,5 +1,5 @@
 @* index Template File *@
-@(id:Long, seq: Seq[Dose])
+@(id:Long, seq: Seq[Dose])(implicit session:play.api.mvc.Session)
 
 @main("Index") {
 	@for(dose <- seq){

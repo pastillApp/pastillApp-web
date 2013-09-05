@@ -65,4 +65,20 @@ object Users extends Controller with Secured {
       }
 
   }
+  
+  def updateForm(id:Long) = IsAuthenticated {username =>
+    implicit request => 
+	  User.findById(id) match {
+        case Some(user) => Ok(html.users.update(user))
+        case _ => NotFound("404")
+      }
+  }
+  
+  def createForm(id:Long) = IsAuthenticated{username => 
+    implicit request => 
+      val user = User.findById(id).get
+      if (Application.isManagerOf(user)) {
+        Ok(html.users.create())
+      } else NotFound("404")
+  }
 }

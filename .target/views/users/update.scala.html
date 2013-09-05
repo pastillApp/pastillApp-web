@@ -1,4 +1,4 @@
-@(user:User)(implicit flash:Flash)
+@(user:User)(implicit flash:Flash, session:play.api.mvc.Session)
 
 @import Option._
 @import helper._
@@ -32,6 +32,9 @@
 	   	   <div class="span12">
 	     <label title="Telephone" for="telephone">Telephone:</label><br>
 	     <input type="tel" name="telephone" id="telephone" placeholder="" value="@user.telephone"/>
+	   </div>
+	   <div class="span12">
+	   	 <a title="Add contact" href="@routes.Contacts.create(user.id.get)" class="btn span12">Add contact</a>
 	   </div>
 	   <div class="span12">
 	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>

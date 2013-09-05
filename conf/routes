@@ -11,15 +11,19 @@ POST    /login                              controllers.Application.authenticate
 GET     /logout                             controllers.Application.logout
 
 # User Crud
-#GET     /user/:id                          controllers.Users.get(id:Long)
-POST    /user                              controllers.Users.create
-PUT     /user/:id                          controllers.Users.update(id:Long)
+GET		/user/create					   controllers.Users.createForm(id:Long)
+POST    /user/create                       controllers.Users.create
+GET		/user/:id/update				   controllers.Users.updateForm(id:Long)
+POST    /user/:id/update                   controllers.Users.update(id:Long)
 DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Contact Crud
-GET  /user/:uId/contact						controllers.Contacts.listByUser(uId:Long)
+GET     /user/:uId/contact						controllers.Contacts.listByUser(uId:Long)
 #GET	 /contact/:id					    controllers.Contacts.get(id:Long)
-POST    /contact                              controllers.Contacts.create
+GET		/contact/:id/create					controllers.Contacts.createForm(id:Long)
+POST    /contact/:uId/create                 controllers.Contacts.create(uId:Long)
+GET		/contact/:id/update					controllers.Contacts.updateForm(id:Long)
+POST	/contact/:id/update					controllers.Contacts.update(id:Long)
 #PUT     /contact/:id                          controllers.Contacts.update(id:Long)
 #DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
 
@@ -27,8 +31,8 @@ POST    /contact                              controllers.Contacts.create
 GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
 GET     /user/:uId/dose/create              	controllers.Doses.createForm(uId:Long)
 POST    /user/:uId/dose/create              	controllers.Doses.create(uId:Long)
-GET     /dose/:dId/edit           				controllers.Doses.updateForm(dId:Long)
-POST    /dose/:dId/edit           				controllers.Doses.update(dId:Long)
+GET     /dose/:dId/update           				controllers.Doses.updateForm(dId:Long)
+POST    /dose/:dId/update           				controllers.Doses.update(dId:Long)
 POST  	/dose/:dId/delete         				controllers.Doses.delete(dId:Long)
 
 # Manager Crud

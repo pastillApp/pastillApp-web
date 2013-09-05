@@ -39,12 +39,13 @@ object Application extends Controller with Secured {
    * Handle login form submission.
    */
   def authenticate = Action { implicit request =>
+    var aUser : User = null
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(html.login(formWithErrors)),
       user => Redirect({
-        val aUser = User.findByEmail(user._1).get
+        aUser = User.findByEmail(user._1).get
         routes.Doses.listByUser(aUser.id.get)
-      }).withSession("email" -> user._1))
+      }).withSession("email" -> user._1, "id" -> s"${aUser.id.get}"))
   }
 
   /**

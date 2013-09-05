@@ -1,4 +1,4 @@
-@(dose:Dose, managees: Seq[models.User])(implicit flash:Flash)
+@(dose:Dose, managees: Seq[models.User])(implicit flash:Flash, session:play.api.mvc.Session)
 
 @import Option._
 @import helper._

@@ -19,7 +19,7 @@ object Contacts extends Controller with Secured{
       "user_id" -> number))
       
       
-  def create = IsAuthenticated { username =>
+  def create(uId:Long) = IsAuthenticated { username =>
     implicit request =>
       contactForm.bindFromRequest.fold(
         errors => BadRequest,
@@ -74,5 +74,21 @@ object Contacts extends Controller with Secured{
         Contact.delete(id)
         Ok("deleted")
       } else Results.Forbidden
+  }
+  
+  def createForm(id: Long) = IsAuthenticated { username =>
+    implicit request =>
+      val user = User.findById(id).get
+      if (Application.isManagerOf(user)) {
+        Ok(html.contacts.create())
+      } else NotFound("404")
+  }
+  
+  def updateForm(id: Long) = Action {
+    implicit request =>
+      Contact.findById(id) match {
+        case Some(contact) => Ok(html.contacts.update())
+        case _ => NotFound("404")
+      }
   }
 }
