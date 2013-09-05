@@ -75,7 +75,7 @@ object Contact {
   /**
    * Update a Contact.
    */
-  def update(id: Long, contact: Contact): Contact = {
+  def update(contact: Contact): Contact = {
     DB.withConnection { implicit connection =>
       SQL(
         """
@@ -87,10 +87,9 @@ object Contact {
           'genre -> contact.genre,
           'user_id -> contact.user.id,
           'telephone -> contact.telephone,
-          'id -> id).executeUpdate()
+          'id -> contact.id.get).executeUpdate()
 
       contact
-
     }
   }
 

@@ -33,4 +33,46 @@ object Contacts extends Controller with Secured{
             } else Results.Forbidden
         })
   }
+  
+  def get(id:Long) = IsAuthenticated { username => 
+    implicit request =>
+      val contact = Contact.findById(id).get
+      if(Application.isManagerOf(contact.user)) {
+        Ok("get")
+      } else Results.Forbidden
+    
+  }
+  
+  def listByUser(uId:Long) = IsAuthenticated { username =>
+    implicit request =>
+      val user = User.findById(uId).get
+      if (Application.isManagerOf(user)) {
+        //Dose.delete(uId)
+        Contact.findByUser(user)
+        Ok("listed")
+      } else Results.Forbidden
+  }
+  
+  def update(id:Long) = IsAuthenticated { username =>
+    implicit request =>
+      contactForm.bindFromRequest.fold(
+        errors => BadRequest,
+        {
+          case (name, surname, genre, telephone, user_id) =>
+            val contact = Contact.findById(id).get
+            if (Application.isManagerOf(contact.user)) {
+              Contact.update(Contact(Some(id), name, surname, genre, telephone, User.findById(user_id).get))
+              Ok("edited")
+            } else Results.Forbidden
+        })   
+  }
+  
+  def delete(id:Long) = IsAuthenticated { username =>
+    implicit request =>
+      val contact = Contact.findById(id).get
+      if (Application.isManagerOf(contact.user)) {
+        Contact.delete(id)
+        Ok("deleted")
+      } else Results.Forbidden
+  }
 }

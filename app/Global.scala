@@ -1,7 +1,7 @@
 import play.api._
-
 import models._
 import anorm._
+import java.util.Date
 
 object Global extends GlobalSettings {
 
@@ -31,9 +31,9 @@ object InitialData {
 
     if (Dose.findAll.isEmpty) {
       Seq(
-        Dose(None, "dormidina", "2", "pastilla", User.findByEmail("info@pastillapp.com").get),
-        Dose(None, "aspirina", "1", "pastilla", User.findByEmail("intern@pastillapp.com").get),
-        Dose(None, "jarabe", "2", "cucharaditas", User.findByEmail("ceo@pastillapp.com").get)).foreach(Dose.create)
+        Dose(None, "dormidina", "2", "pastilla", 480, new Date(1378404155), new Date(1378404155),  User.findByEmail("info@pastillapp.com").get),
+        Dose(None, "aspirina", "1", "pastilla", 480, new Date(1378404155), new Date(1378404155), User.findByEmail("intern@pastillapp.com").get),
+        Dose(None, "jarabe", "2", "cucharaditas", 720, new Date(1378404155), new Date(1378404155), User.findByEmail("ceo@pastillapp.com").get)).foreach(Dose.create)
     }
 
     if (Contact.findAll.isEmpty) {
