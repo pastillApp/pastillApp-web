@@ -50,6 +50,19 @@ object Application extends Controller with Secured {
     Redirect(routes.Application.login).withNewSession.flashing(
       "success" -> "You've been logged out")
   }
+  
+  def isManagerOf(user: User)(implicit request: RequestHeader) = {
+    val currentUser = User.findByEmail(request.session.get("email").get).get
+    println(currentUser.id)
+    currentUser.id.get match {
+      case uId if uId == user.id.get =>
+        true
+      case _ => {
+        val seq = User.getManageesByManagerId(currentUser.id.get)
+        seq.filterNot(_.id == user.id).isEmpty
+      }
+    }
+  }
 
 }
 

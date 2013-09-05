@@ -27,7 +27,7 @@ object Doses extends Controller with Secured {
         {
           case (medicine, amount, measure, user_id) =>
             val user = User.findById(user_id).get
-            if (isManagerOf(user)) {
+            if (Application.isManagerOf(user)) {
               val dose = Dose.create(
                 Dose(None, medicine, amount, measure, user))
               Ok("")
@@ -38,25 +38,48 @@ object Doses extends Controller with Secured {
   /**
    * Add a project.
    */
-  def remove(id: Long) = IsAuthenticated { username =>
+  def delete(id: Long) = IsAuthenticated { username =>
     implicit request =>
       val dose = Dose.findById(id).get
-      if (isManagerOf(dose.user)) {
+      if (Application.isManagerOf(dose.user)) {
         Dose.delete(id)
-        Ok("")
+        Ok("deleted")
       } else Results.Forbidden
   }
-
-  private def isManagerOf(user: User)(implicit request: RequestHeader) = {
-    val currentUser = User.findByEmail(request.session.get("email").get).get
-    println(currentUser.id)
-    currentUser.id.get match {
-      case uId if uId == user.id.get =>
-        true
-      case _ => {
-        val seq = User.getManageesByManagerId(currentUser.id.get)
-        seq.filterNot(_.id == user.id).isEmpty
-      }
-    }
+  
+  /**
+   * List all doses by an user Id
+   */
+  def listByUser(uId: Long) = IsAuthenticated { username =>
+    implicit request =>
+      val user = User.findById(uId).get
+      if (Application.isManagerOf(user)) {
+        //Dose.delete(uId)
+        Dose.findByUser(user)
+        Ok("listed")
+      } else Results.Forbidden
   }
+  
+  def get(dId: Long) = IsAuthenticated { username => 
+    implicit request =>
+      val dose = Dose.findById(dId).get
+      if(Application.isManagerOf(dose.user)) {
+        Ok("get")
+      } else Results.Forbidden        
+  }
+  
+  def edit(dId: Long) = IsAuthenticated { username =>
+    implicit request =>
+      doseForm.bindFromRequest.fold(
+        errors => BadRequest,
+        {
+          case (medicine, amount, measure, user_id) =>
+            val dose = Dose.findById(dId).get
+            if (Application.isManagerOf(dose.user)) {
+              Dose.update(dId, dose)
+              Ok("edited")
+            } else Results.Forbidden
+        })   
+  }
+
 }
