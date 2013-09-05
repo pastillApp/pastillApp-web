@@ -32,5 +32,3 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-
-conf/application.conf
