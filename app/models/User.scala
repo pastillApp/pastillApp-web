@@ -6,7 +6,7 @@ import play.api.Play.current
 import anorm._
 import anorm.SqlParser._
 
-case class User(id: Option[Long], email: String, password: String, name: String, surname: Option[String], address: String, telephone: String)
+case class User(id: Option[Long], email: String, password: String, name: String, surname: Option[String], address: String, zip:String, telephone: String)
 
 object User {
 
@@ -22,8 +22,9 @@ object User {
       get[String]("users.name") ~
       get[String]("users.surname") ~
       get[String]("users.address") ~
+      get[String]("users.zip_code") ~
       get[String]("users.telephone") map {
-        case id ~ email ~ password ~ name ~ surname ~ telephone ~ address => User(Option(id), email, password, name, Option(surname), telephone, address)
+        case id ~ email ~ password ~ name ~ surname ~ address ~ zip ~ telephone=> User(Option(id), email, password, name, Option(surname), address, zip, telephone)
       }
   }
 
@@ -80,8 +81,8 @@ object User {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          insert into users values (
-          {email}, {password}, {name}, {surname}, {address}, {telephone}
+          insert into users (email, password, name, surname, address, zip_code, telephone) values (
+          {email}, {password}, {name}, {surname}, {address}, {zip_code}, {telephone}
           )
         """).on(
           'email -> user.email,
@@ -89,7 +90,9 @@ object User {
           'name -> user.name,
           'surname -> user.surname,
           'address -> user.address,
-          'telephone -> user.telephone).executeUpdate()
+          'zip_code -> user.zip,
+          'telephone -> user.telephone
+          ).executeInsert()
 
       user
 
@@ -104,7 +107,7 @@ object User {
       SQL(
         """
           update users values set email = {email}, password = {password}, name = {name}, 
-          surname = {surname}, address = {address}, telephone = {telephone} where id = {id}
+          surname = {surname}, address = {address}, zip_code = {zip_code} telephone = {telephone} where id = {id}
           )
         """).on(
           'email -> user.email,
@@ -112,6 +115,7 @@ object User {
           'name -> user.name,
           'surname -> user.surname,
           'address -> user.address,
+          'zip_code -> user.zip,
           'telephone -> user.telephone,
           'id -> id).executeUpdate()
 

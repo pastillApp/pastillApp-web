@@ -16,8 +16,9 @@ object Users extends Controller with Secured {
       "password" -> text,
       "name" -> text,
       "surname" -> optional(text),
-      "telephone" -> text,
-      "address" -> text))
+      "address" -> text,
+      "zip_code" -> text,
+      "telephone" -> text))
 
   /**
    * Add a project.
@@ -27,9 +28,9 @@ object Users extends Controller with Secured {
       userForm.bindFromRequest.fold(
         errors => BadRequest,
         {
-          case (email, password, name, surname, telephone, address) =>
+          case (email, password, name, surname, address, zip, telephone) =>
             val user = User.create(
-              User(None, email, password, name, surname, telephone, address))
+              User(None, email, password, name, surname, address, zip, telephone))
             Ok("")
         })
   }
@@ -42,9 +43,9 @@ object Users extends Controller with Secured {
       userForm.bindFromRequest.fold(
         errors => BadRequest,
         {
-          case (email, password, name, surname, telephone, address) =>
+          case (email, password, name, surname, address, zip, telephone) =>
             val user = User.update(id,
-              User(None, email, password, name, surname, telephone, address))
+              User(None, email, password, name, surname, address, zip, telephone))
             Ok("")
         })
 
