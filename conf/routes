@@ -16,6 +16,12 @@ POST    /user                              controllers.Users.add
 PUT     /user/:id                          controllers.Users.update(id:Long)
 DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
+# Contact Crud
+#GET		/contact/:id					   controllers.Contacts.get(id:Long)
+#POST    /contact                              controllers.Contacts.add
+#PUT     /contact/:id                          controllers.Contacts.update(id:Long)
+#DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
+
 # Dose Crud
 #GET     /medicine/:mId/dose           		controllers.Doses.list(mId:Long)
 #GET     /medicine/:mId/dose/:dId           controllers.Doses.get(mId:Long, dId:Long)

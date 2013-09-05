@@ -13,7 +13,7 @@ object Dose {
   // -- Parsers
   
   /**
-   * Parse a User from a ResultSet
+   * Parse a Dose from a ResultSet
    */
   val simple = {
     get[Long]("doses.id") ~
@@ -70,6 +70,44 @@ object Dose {
       
       dose
       
+    }
+  }
+  
+  /**
+   * Update a User.
+   */
+  def update(id: Long, dose: Dose): Dose = {
+    DB.withConnection { implicit connection =>
+      SQL(
+        """
+          update doses values set amount = {amount}, measure = {measure}, medicine = {medicine}, 
+          user_id = {user_id} where id = {id}
+          )
+        """).on(
+          'amount -> dose.amount,
+          'measure -> dose.measure,
+          'medicine -> dose.medicine,
+          'user_id -> dose.user.id.get,
+          'id -> id).executeUpdate()
+
+      dose
+
+    }
+  }
+
+  /**
+   * Delete a Dose.
+   */
+  def delete(id: Long) {
+    DB.withConnection { implicit connection =>
+      SQL("delete from doses where id = {id}").on(
+        'id -> id).executeUpdate()
+    }
+  }
+  
+  def findAll() : Seq[Dose] = {
+    DB.withConnection { implicit connection =>
+      SQL("select * from doses").as(Dose.simple *)
     }
   }
   
