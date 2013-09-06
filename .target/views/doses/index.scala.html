@@ -3,7 +3,7 @@
 @main("Index") {
 	@for(dose <- seq){
 		<div class="myRow">
-			<div class="myButton gray a70">
+			<div class="myButton gray a70 la98">
 				<h3>@dose.medicine Alert!</h3>
 				<p>You need to take @dose.amount @dose.measure in @dose.period secconds.</p>
 			</div>
@@ -16,6 +16,6 @@
 		</div>
 	}
 	<div class="clear">
-		<a href="@routes.Doses.create(id)" id="add" title="Add Alerts" class="myButton dark-blue a100">Add Alerts</a>
+		<a href="@routes.Doses.create(id)" id="add" title="Add Alerts" class="myButton dark-blue a100">Add Alert</a>
 	</div>
 }

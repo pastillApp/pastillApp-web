@@ -1,46 +1,31 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-	<!--<![endif]-->
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>PastillApp</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="../css/normalize.css">
-		<link rel="stylesheet" href="../css/main.css">
-		<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" media="screen"/>
-		<link rel="stylesheet" href="../css/bootstrap.min.css" media="screen"/>
-		<link rel="stylesheet" href="../css/app.css">
-		<script src="../js/vendor/custom.modernizr.js"></script>
-	</head>
-	<body>
-		<div class="container-fluid">
-			<h1>pastillApp</h1>
-			<h2>Add contact</h2>
-			<form class="well">
-				<label>Telephone</label>
-				<input type="tel" id="telephone" name="telephone" />
-				<label>Name</label>
-				<input type="text" id="name" name="name" />
-				<label>Surname</label>
-				<input type="text" id="surname" name="surname" />
-				<label>Genre</label>
-				<select id="genre" name="genre">
-					<option value="U">Undefined</option>
-					<option value="M">Male</option>
-					<option value="F">Female</option>
-				</select>
-				<br/>
-				<input type="submit" class="btn btn-primary" value="Submit" />
-			</form>
+@(contact:Contact)(implicit session:play.api.mvc.Session)
+@main("create contact"){
+	<form method="POST" action="@routes.Contacts.update(contact.id.get)">
+		<div class="span12">
+			<label>Name</label>
+			<input type="text" id="name" name="name" value="@contact.name" />
 		</div>
-		<script src="http://code.jquery.com/jquery.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-	</body>
-</html>
+		<div class="span12">
+			<label>Surname</label>
+			<input type="text" id="surname" name="surname"  value="@contact.surname" />
+		</div>
+		<div class="span12">
+			<label>Genre</label>
+			<select class="span12" id="genre" name="genre">
+				<option value="U" @if(contact.genre == "U"){selected}>Undefined</option>
+				<option value="M" @if(contact.genre == "M"){selected}>Male</option>
+				<option value="F" @if(contact.genre == "F"){selected}>Female</option>
+			</select>
+		</div>
+		<div class="span12">
+			<label>Telephone</label>
+			<input type="tel" id="telephone" name="telephone"  value="@contact.telephone"/>
+		</div>
+	   <div class="span12">
+	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   </div>
+	   <div class="span12">
+	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   </div>
+	</form>
+}
