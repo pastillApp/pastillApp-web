@@ -146,5 +146,13 @@ object User {
         'id -> id).as(User.simple *)    
     }
   }
+  
+  def addManagee(manageeId:Long, managerId:Long) = {
+    DB.withConnection { implicit connection =>
+      SQL("""insert into manage (manager, managee) values ({manager}, {managee})""").on(
+          'manager -> managerId,
+          'managee -> manageeId).executeInsert()      
+    }
+  }
 
 }
