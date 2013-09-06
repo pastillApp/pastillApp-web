@@ -6,20 +6,20 @@
 @main("Create User"){
 	<form method="POST" action="@routes.Users.create">
 	   <div class="span12">
-	     <label title="email" for="fragment">Medicine:</label><br>
-	     <input type="email" name="email" id="email" placeholder="me@@example.com" value="@user.email"/>
-	   </div>
-	   <div class="span12">
-	     <label title="Password" for="password">Medicine:</label><br>
-	     <input type="password" name="password" id="password"/>
-	   </div>
-	   <div class="span12">
 	     <label title="Name" for="name">Name:</label><br>
 	     <input type="text" name="name" id="name" placeholder="" value="@user.name"/>
 	   </div>
 	   <div class="span12">
 	     <label title="Surname" for="surname">Surname:</label><br>
 	     <input type="text" name="surname" id="surname" placeholder="" value="@user.surname"/>
+	   </div>
+	   <div class="span12">
+	     <label title="email" for="fragment">Email:</label><br>
+	     <input type="email" name="email" id="email" placeholder="me@@example.com" value="@user.email"/>
+	   </div>
+	   <div class="span12">
+	     <label title="Password" for="password">Password:</label><br>
+	     <input type="password" name="password" id="password"/>
 	   </div>
 	   <div class="span12">
 	     <label title="Address" for="address">Address:</label><br>

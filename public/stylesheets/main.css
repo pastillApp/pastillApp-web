@@ -1,0 +1,101 @@
+@font-face {
+	font-family:'pixel-condensada';
+	src:url(pixel_condensada.eot);
+	src:url(pixel_condensada.eot?#iefix) format("embedded-opentype"),url(pixel_condensada.woff) format("woff"),url(pixel_condensada.ttf) format("truetype"),url(pixel_condensada.svg#pixel_condensada) format("svg");
+	font-weight:400;
+	font-style:normal;
+}
+
+#pixel {
+	font-family:'pixel-condensada',"Gill Sans",helvetica,arial;
+	font-size: 2.5em;
+}
+
+.a100 {
+	width:100%;
+	height:100%;
+	padding:10% 0;
+}
+
+.a70 {
+	width:70%;
+	float:left;
+}
+
+.a15 {
+	width:15%;
+	float:left;
+}
+
+.l98 {
+	height: 43px;
+	padding-top: 33px;
+}
+
+.clear {
+	clear:both;
+	width:100%;
+	margin:10px auto 0;
+}
+
+.myRow {
+	overflow:auto;
+}
+
+#add {
+	padding:10px 0;
+}
+
+.myButton {
+	display:inline-block;
+	margin-bottom:0;
+	font-size:14px;
+	line-height:20px;
+	color:#333;
+	text-align:center;
+	text-shadow:0 1px 1px rgba(255,255,255,0.75);
+	vertical-align:middle;
+	cursor:pointer;
+}
+
+.gray {
+	background-color:#f5f5f5;
+}
+
+.red {
+	background-color:#cf3c3c;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	color: #fff;
+}
+
+.blue {
+	background-color:#5382bc;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	color: #fff;
+}
+
+.dark-blue {
+	background-color:#36567c;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	color: #fff;
+}
+
+#logo {
+	float: left;
+	margin-right: 15px;
+}
+
+input {
+	width: 100%;
+}
+
+button, input[type=submit] {
+	border: none;
+	margin-bottom: 10px;
+}

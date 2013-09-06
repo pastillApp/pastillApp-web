@@ -80,7 +80,7 @@ object Contacts extends Controller with Secured{
     implicit request =>
       val user = User.findById(id).get
       if (Application.isManagerOf(user)) {
-        Ok(html.contacts.create())
+        Ok(html.contacts.create(id))
       } else NotFound("404")
   }
   
