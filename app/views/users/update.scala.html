@@ -5,42 +5,42 @@
 
 @main("Create User"){
 	<form method="POST" action="@routes.Users.create">
-	   <div class="span12">
-	     <label title="Name" for="name">Name:</label><br>
+	   <div class="">
+	     <label title="Name" for="name">Name</label>
 	     <input type="text" name="name" id="name" placeholder="" value="@user.name"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Surname" for="surname">Surname:</label><br>
+	   <div class="">
+	     <label title="Surname" for="surname">Surname</label>
 	     <input type="text" name="surname" id="surname" placeholder="" value="@user.surname"/>
 	   </div>
-	   <div class="span12">
-	     <label title="email" for="fragment">Email:</label><br>
+	   <div class="">
+	     <label title="email" for="fragment">Email</label>
 	     <input type="email" name="email" id="email" placeholder="me@@example.com" value="@user.email"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Password" for="password">Password:</label><br>
+	   <div class="">
+	     <label title="Password" for="password">Password</label>
 	     <input type="password" name="password" id="password"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Address" for="address">Address:</label><br>
+	   <div class="">
+	     <label title="Address" for="address">Address</label>
 	     <input type="text" name="address" id="address" placeholder="" value="@user.address"/>
 	   </div>
-	   	   <div class="span12">
-	     <label title="Zip Code" for="zip_code">Zip Code:</label><br>
+	   	   <div class="">
+	     <label title="Zip Code" for="zip_code">Zip Code</label>
 	     <input type="number" name="zip_code" id="zip_code" placeholder="" value="@user.zip"/>
 	   </div>
-	   	   <div class="span12">
-	     <label title="Telephone" for="telephone">Telephone:</label><br>
+	   	   <div class="">
+	     <label title="Telephone" for="telephone">Telephone</label>
 	     <input type="tel" name="telephone" id="telephone" placeholder="" value="@user.telephone"/>
 	   </div>
-	   <div class="span12">
-	   	 <a title="Add contact" href="@routes.Contacts.create(user.id.get)" class="btn span12">Add contact</a>
+	   <div class="">
+	   	 <a title="Add contact" href="@routes.Contacts.create(user.id.get)" class="myButton green a100">Add contact</a>
 	   </div>
-	   <div class="span12">
-	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   <div class="">
+	   	 <input type="submit" title="Submit" value="OK" class="myButton blue a100"/>
 	   </div>
-	   <div class="span12">
-	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   <div class="">
+	   	 <a title="Cancel" href="@routes.Application.index" class="myButton red a100">Cancel</a>
 	   </div>
 	</form>
 }

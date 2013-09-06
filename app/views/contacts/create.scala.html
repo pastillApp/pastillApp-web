@@ -1,31 +1,31 @@
 @(id:Long)(implicit session:play.api.mvc.Session)
 @main("create contact"){
 	<form method="POST" action="@routes.Contacts.create(id)">
-		<div class="span12">
+		<div class="">
 			<label>Name</label>
 			<input type="text" id="name" name="name" />
 		</div>
-		<div class="span12">
+		<div class="">
 			<label>Surname</label>
 			<input type="text" id="surname" name="surname" />
 		</div>
-		<div class="span12">
+		<div class="">
 			<label>Genre</label>
-			<select class="span12" id="genre" name="genre">
+			<select class="" id="genre" name="genre">
 				<option value="U">Undefined</option>
 				<option value="M">Male</option>
 				<option value="F">Female</option>
 			</select>
 		</div>
-		<div class="span12">
+		<div class="">
 			<label>Telephone</label>
 			<input type="tel" id="telephone" name="telephone" />
 		</div>
-	   <div class="span12">
-	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   <div class="">
+	   	 <input type="submit" title="Submit" value="OK" class="myButton blue a100"/>
 	   </div>
-	   <div class="span12">
-	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   <div class="">
+	   	 <a title="Cancel" href="@routes.Application.index" class="myButton red a100">Cancel</a>
 	   </div>
 	</form>
 }

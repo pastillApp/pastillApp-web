@@ -6,15 +6,32 @@
 	font-style:normal;
 }
 
+.header {
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #333;
+	margin-bottom: 20px;
+	position: fixed;
+	width: 100%;
+}
+
+.content {
+	padding-top: 80px;
+}
+
+.nav {
+	margin-right: 30px;
+}
+
 #pixel {
 	font-family:'pixel-condensada',"Gill Sans",helvetica,arial;
 	font-size: 2.5em;
+	color: #fff;
 }
 
 .a100 {
 	width:100%;
-	height:100%;
-	padding:10% 0;
+	padding: 10px 0px;
 }
 
 .a70 {
@@ -28,8 +45,12 @@
 }
 
 .l98 {
-	height: 43px;
+	height: 42px;
 	padding-top: 33px;
+}
+
+.la98 {
+	height: 86px;
 }
 
 .clear {
@@ -48,7 +69,7 @@
 
 .myButton {
 	display:inline-block;
-	margin-bottom:0;
+	margin-bottom:10px;
 	font-size:14px;
 	line-height:20px;
 	color:#333;
@@ -78,6 +99,14 @@
 	color: #fff;
 }
 
+.green {
+	background-color:#53bdaf;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	color: #fff;
+}
+
 .dark-blue {
 	background-color:#36567c;
 	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
@@ -91,7 +120,7 @@
 	margin-right: 15px;
 }
 
-input {
+input, select {
 	width: 100%;
 }
 

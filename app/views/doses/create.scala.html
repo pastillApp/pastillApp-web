@@ -5,35 +5,35 @@
 
 @main("Create Dose"){
 	<form method="POST" action="@routes.Doses.create(id)">
-	   <div class="span12">
-	     <label title="Medicine" for="medicine">Medicine:</label><br>
-	     <input class="span12" type="text" name="medicine" id="medicine" placeholder="Place a Medicine"/>
+	   <div class="">
+	     <label title="Medicine" for="medicine">Medicine</label>
+	     <input class="" type="text" name="medicine" id="medicine" placeholder="Place a Medicine"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Amount" for="amount">Amount:</label><br>
-	     <input class="span12" type="text" name="amount" id="amount" placeholder="Place the amount required"/>
+	   <div class="">
+	     <label title="Amount" for="amount">Amount</label>
+	     <input class="" type="text" name="amount" id="amount" placeholder="Place the amount required"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Measure" for="measure">Measure:</label><br>
-	     <input class="span12" type="text" name="measure" id="measure" placeholder="Place the measure"/>
+	   <div class="">
+	     <label title="Measure" for="measure">Measure</label>
+	     <input class="" type="text" name="measure" id="measure" placeholder="Place the measure"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Period" for="period">Period:</label><br>
-	     <input class="span12" type="number" name="period" id="period" placeholder="Place the period"/>
+	   <div class="">
+	     <label title="Period" for="period">Period</label>
+	     <input class="" type="number" name="period" id="period" placeholder="Place the period"/>
 	   </div>
-	   <div class="span12">
-	     <label title="User" for="user_id">User:</label><br>
-	     <select id="user_id" name="user_id" class="span12">
+	   <div class="">
+	     <label title="User" for="user_id">User</label>
+	     <select id="user_id" name="user_id" class="">
 	     	@for(managee <- managees){
 			<option value="@managee.id">@managee.name @managee.surname</option>
 			}
 		 </select>
 	   </div>
-	   <div class="span12">
-	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   <div class="">
+	   	 <input type="submit" title="Submit" value="OK" class="myButton blue a100"/>
 	   </div>
-	   <div class="span12">
-	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   <div class="">
+	   	 <a title="Cancel" href="@routes.Application.index" class="myButton red a100">Cancel</a>
 	   </div>
 	</form>
 }
