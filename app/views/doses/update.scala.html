@@ -5,35 +5,35 @@
 
 @main("Update Dose") {
 	<form method="POST" action="@routes.Doses.update(dose.id.get)">
-	   <div class="span12">
-	     <label title="Medicine" for="name">Medicine:</label><br>
-	     <input class="span12" type="text" name="medicine" id="medicine" placeholder="Place a Medicine" value="@dose.medicine"/>
+	   <div class="">
+	     <label title="Medicine" for="name">Medicine</label>
+	     <input class="" type="text" name="medicine" id="medicine" placeholder="Place a Medicine" value="@dose.medicine"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Amount" for="amount">Medicine:</label><br>
-	     <input class="span12" type="text" name="amount" id="amount" placeholder="Place the amount required" value="@dose.amount"/>
+	   <div class="">
+	     <label title="Amount" for="amount">Medicine</label>
+	     <input class="" type="text" name="amount" id="amount" placeholder="Place the amount required" value="@dose.amount"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Measure" for="measure">Measure:</label><br>
-	     <input class="span12" type="text" name="measure" id="measure" placeholder="Place the measure" value="@dose.measure"/>
+	   <div class="">
+	     <label title="Measure" for="measure">Measure</label>
+	     <input class="" type="text" name="measure" id="measure" placeholder="Place the measure" value="@dose.measure"/>
 	   </div>
-	   <div class="span12">
-	     <label title="Period" for="period">Period:</label><br>
-	     <input class="span12" type="number" name="period" id="period" placeholder="Place the period" value="@dose.period"/>
+	   <div class="">
+	     <label title="Period" for="period">Period</label>
+	     <input class="" type="number" name="period" id="period" placeholder="Place the period" value="@dose.period"/>
 	   </div>
-	   <div class="span12">
-	     <label title="User" for="user_id">User:</label><br>
-	     <select id="user_id" name="user_id" class="span12">
+	   <div class="">
+	     <label title="User" for="user_id">User</label>
+	     <select id="user_id" name="user_id" class="">
 	     	@for(managee <- managees){
 			<option @if(managee.id.get == dose.user.id.get){checked="checked"} value="@managee.id">@managee.name @managee.surname</option>
 			}
 		 </select>
 	   </div>
-	   <div class="span12">
-	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   <div class="">
+	   	 <input type="submit" title="Submit" value="OK" class="myButton blue a100"/>
 	   </div>
-	   <div class="span12">
-	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   <div class="">
+	   	 <a title="Cancel" href="@routes.Application.index" class="myButton red a100">Cancel</a>
 	   </div>
 	</form>
 }

@@ -1178,7 +1178,7 @@ input[type="reset"],
 input[type="button"],
 input[type="radio"],
 input[type="checkbox"] {
-  width: auto;
+
 }
 
 select,
@@ -1193,7 +1193,6 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
