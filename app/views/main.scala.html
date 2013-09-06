@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit session:play.api.mvc.Session)
 
 <!DOCTYPE html>
 
@@ -16,7 +16,9 @@
 	    		<div class="masthead">
 			        <ul class="nav nav-pills pull-right">
 			          <li class="active"><a href="@routes.Application.index">Home</a></li>
-			          <li><a href="#">Settings</a></li>
+			          @if(!session.get("id").isEmpty){
+			          	<li><a href="@routes.Users.update(session.get("id").get.toInt)">Settings</a></li>
+			          }
 			          <li><a href="#">About</a></li>
 			        </ul>
 	        		<img id="logo" src="@routes.Assets.at("images/logo.png")" />

@@ -1,4 +1,4 @@
-@(user:User)(implicit flash:Flash)
+@(user:User)(implicit flash:Flash, session:play.api.mvc.Session)
 
 @import Option._
 @import helper._
@@ -6,20 +6,20 @@
 @main("Create User"){
 	<form method="POST" action="@routes.Users.create">
 	   <div class="span12">
-	     <label title="email" for="fragment">Medicine:</label><br>
-	     <input type="email" name="email" id="email" placeholder="me@@example.com" value="@user.email"/>
-	   </div>
-	   <div class="span12">
-	     <label title="Password" for="password">Medicine:</label><br>
-	     <input type="password" name="password" id="password"/>
-	   </div>
-	   <div class="span12">
 	     <label title="Name" for="name">Name:</label><br>
 	     <input type="text" name="name" id="name" placeholder="" value="@user.name"/>
 	   </div>
 	   <div class="span12">
 	     <label title="Surname" for="surname">Surname:</label><br>
 	     <input type="text" name="surname" id="surname" placeholder="" value="@user.surname"/>
+	   </div>
+	   <div class="span12">
+	     <label title="email" for="fragment">Email:</label><br>
+	     <input type="email" name="email" id="email" placeholder="me@@example.com" value="@user.email"/>
+	   </div>
+	   <div class="span12">
+	     <label title="Password" for="password">Password:</label><br>
+	     <input type="password" name="password" id="password"/>
 	   </div>
 	   <div class="span12">
 	     <label title="Address" for="address">Address:</label><br>
@@ -32,6 +32,9 @@
 	   	   <div class="span12">
 	     <label title="Telephone" for="telephone">Telephone:</label><br>
 	     <input type="tel" name="telephone" id="telephone" placeholder="" value="@user.telephone"/>
+	   </div>
+	   <div class="span12">
+	   	 <a title="Add contact" href="@routes.Contacts.create(user.id.get)" class="btn span12">Add contact</a>
 	   </div>
 	   <div class="span12">
 	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>

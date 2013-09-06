@@ -55,7 +55,6 @@ object Dose {
    * Create a Dose.
    */
   def create(dose: Dose): Dose = {
-    val date = new Date
     DB.withConnection { implicit connection =>
       SQL(
         """
@@ -67,8 +66,8 @@ object Dose {
           'amount -> dose.amount,
           'measure -> dose.measure,
           'period -> dose.period,
-          'created -> date,
-          'updated -> date,
+          'created -> dose.created,
+          'updated -> dose.updated,
           'user_id -> dose.user.id).executeUpdate()
 
       dose
@@ -85,7 +84,6 @@ object Dose {
         """
           update doses set period = {period}, amount = {amount}, measure = {measure}, medicine = {medicine}, created = {created}, updated = {updated},
           user_id = {user_id} where id = {id}
-          )
         """).on(
           'amount -> dose.amount,
           'measure -> dose.measure,

@@ -1,14 +1,21 @@
-@* index Template File *@
-@(id:Long, seq: Seq[Dose])
+@(id:Long, seq: Seq[Dose])(implicit session:play.api.mvc.Session)
 
 @main("Index") {
 	@for(dose <- seq){
-		<div class="span10 btn">
-			<h3>@dose.medicine Alert!</h3>
-			<p>You need to take @dose.amount @dose.measure in *** minutes.</p>
+		<div class="myRow">
+			<div class="myButton gray a70">
+				<h3>@dose.medicine Alert!</h3>
+				<p>You need to take @dose.amount @dose.measure in @dose.period secconds.</p>
+			</div>
+			<div class="a15">
+				<a href="@routes.Doses.updateForm(dose.id.get)" title="Edit Alert" class="myButton blue a100 l98">Update</a>
+			</div>
+			<div class="a15">
+				<a href="@routes.Doses.delete(dose.id.get)" title="Edit Alert" class="myButton red a100 l98" data-method="POST">Delete</a>
+			</div>
 		</div>
-		<a href="@routes.Doses.updateForm(id)" title="Edit Alert" class="span2 btn">Update</a>
-		<a href="@routes.Doses.delete(dose.id.get)" title="Edit Alert" class="span2 btn" data-method="POST">Delete</a>
 	}
-	<a href="@routes.Doses.create(id)" title="Edit Alert" class="span12 btn">Add Alerts</a>
+	<div class="clear">
+		<a href="@routes.Doses.create(id)" id="add" title="Add Alerts" class="myButton dark-blue a100">Add Alerts</a>
+	</div>
 }

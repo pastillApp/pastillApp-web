@@ -107,7 +107,7 @@ object User {
       SQL(
         """
           update users set email = {email}, password = {password}, name = {name}, 
-          surname = {surname}, address = {address}, zip_code = {zip_code} telephone = {telephone} where id = {id}
+          surname = {surname}, address = {address}, zip_code = {zip_code}, telephone = {telephone} where id = {id}
         """).on(
           'email -> user.email,
           'password -> user.password,

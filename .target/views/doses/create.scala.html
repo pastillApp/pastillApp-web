@@ -1,5 +1,4 @@
-@* create Template File *@
-@(id:Long)(implicit flash:Flash)
+@(id:Long, managees: Seq[models.User])(implicit flash:Flash, session:play.api.mvc.Session)
 
 @import Option._
 @import helper._
@@ -19,8 +18,16 @@
 	     <input class="span12" type="text" name="measure" id="measure" placeholder="Place the measure"/>
 	   </div>
 	   <div class="span12">
+	     <label title="Period" for="period">Period:</label><br>
+	     <input class="span12" type="number" name="period" id="period" placeholder="Place the period"/>
+	   </div>
+	   <div class="span12">
 	     <label title="User" for="user_id">User:</label><br>
-	     <input class="span12" class="span12" type="text" name="user_id" id="user_id" placeholder="Place the user"/>
+	     <select id="user_id" name="user_id" class="span12">
+	     	@for(managee <- managees){
+			<option value="@managee.id">@managee.name @managee.surname</option>
+			}
+		 </select>
 	   </div>
 	   <div class="span12">
 	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
