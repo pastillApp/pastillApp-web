@@ -6,9 +6,27 @@
 	font-style:normal;
 }
 
+.header {
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #333;
+	margin-bottom: 20px;
+	position: fixed;
+	width: 100%;
+}
+
+.content {
+	padding-top: 80px;
+}
+
+.nav {
+	margin-right: 30px;
+}
+
 #pixel {
 	font-family:'pixel-condensada',"Gill Sans",helvetica,arial;
 	font-size: 2.5em;
+	color: #fff;
 }
 
 .a100 {
@@ -27,7 +45,7 @@
 }
 
 .l98 {
-	height: 38px;
+	height: 42px;
 	padding-top: 33px;
 }
 
