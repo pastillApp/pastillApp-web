@@ -7,8 +7,9 @@ import play.api.data.Forms._
 import java.util.Date
 import models._
 import views._
-import play.libs.Json
-import com.google.gson.Gson
+import play.api.libs.json.Json
+import scala.collection.mutable.ListBuffer
+import play.api.libs.json.JsValue
 
 object Doses extends Controller with Secured {
 
@@ -111,10 +112,17 @@ object Doses extends Controller with Secured {
       if (Application.isManagerOf(user)) {
         val doses = Dose.retrieveLastByUser(uId, last)
         println(doses)
-        val gson = new Gson()
-        val jDoses = gson.toJson(doses)
-        println(jDoses)
-        Ok(jDoses)
+        val list = new ListBuffer[JsValue]
+        doses.foreach(dose => {
+          var obj = Json.obj(
+              "id" -> dose.id.get,
+              "medicine" -> dose.medicine,
+              "amount" -> dose.amount, 
+              "measure" -> dose.measure,
+              "period" -> dose.period)
+          list += obj
+        })
+        Ok(Json.obj("doses" -> Json.arr(list)))
       } else Results.Forbidden("Prohibido")
   }
 

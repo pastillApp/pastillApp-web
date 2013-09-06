@@ -10,15 +10,19 @@ import views._
 
 object Managers extends Controller with Secured{
   
+<<<<<<< HEAD
   val managerForm = Form(
-      "mail" -> text)
-  
+      "email" -> text)
+
+  def listByManagee(uId:Long) = IsAuthenticated { username =>
+=======
   def listByManagee(uId:Long) = IsAuthenticated { email =>
+>>>>>>> frontend
     implicit request =>
       val user = User.findById(uId).get
       if(Application.isManagerOf(user)) {
         User.getManagersByManageeId(uId)
-        Ok(html.managers.index(User.getManagersByManageeId(uId)))
+        Ok("Listed managers")
       } else Results.Forbidden     
         
   }
@@ -29,7 +33,7 @@ object Managers extends Controller with Secured{
   	  val aUser = User.findByEmail(email).get
   	  if(user.id == aUser.id) {
   	    User.getManageesByManagerId(uId)
-  	    Ok(html.managers.index(User.getManageesByManagerId(uId)))
+  	    Ok("Listed managees")
   	  } else Results.Forbidden
   }
   
@@ -38,7 +42,7 @@ object Managers extends Controller with Secured{
       val user = User.findById(uId).get
       //val managees = User.getManageesByManagerId(user.id.get) ++ List(user)
       if (Application.isManagerOf(user)) {
-        Ok(html.managers.create(user.id.get))
+        Ok(html.managers.create())
       } else NotFound("404")
   }
   
