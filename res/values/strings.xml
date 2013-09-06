@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">The app is working.</string>
+    <string name="app_name">pastillApp</string>
+<string name="btnAlarmON">Alarma Activada</string>
+<string name="btnAlarmOFF">Alarma Desactivada</string>
+<string name="notified">Notificado!</string>
+<string name="service_name">servicio</string>
+
+<string name="retornoText">Has pulsado en la notificación.</string>
+</resources>
