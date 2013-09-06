@@ -115,9 +115,9 @@ object Dose {
   
   def retrieveLastByUser(uId:Long, last:Long) : Seq[Dose] = {
     DB.withConnection { implicit connection =>
-      SQL("select * from doses where id = {id} and updated < {last}").on(
+      SQL("select * from doses where user_id = {id} and DATE(updated) > DATE({last})").on(
           'id -> uId,
-          'last -> last).as(Dose.simple *)      
+          'last -> new Date(last)).as(Dose.simple *)      
     }
   }
 

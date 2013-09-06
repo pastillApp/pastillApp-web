@@ -33,6 +33,7 @@ POST    /user/:uId/dose/create              controllers.Doses.create(uId:Long)
 GET     /dose/:dId/update           		controllers.Doses.updateForm(dId:Long)
 POST    /dose/:dId/update           		controllers.Doses.update(dId:Long)
 POST  	/dose/:dId/delete         			controllers.Doses.delete(dId:Long)
+GET  	/doses/user/:dId/retrieve/:timestamp  	controllers.Doses.retrieveDosesByUser(dId:Long, timestamp:Long)
 
 # Manager Crud
 GET     /user/:uId/manager			         controllers.Managers.listByManagee(uId:Long)

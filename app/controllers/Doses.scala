@@ -5,9 +5,10 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import java.util.Date
-
 import models._
 import views._
+import play.libs.Json
+import com.google.gson.Gson
 
 object Doses extends Controller with Secured {
 
@@ -108,8 +109,12 @@ object Doses extends Controller with Secured {
     implicit request =>
       val user = User.findById(uId).get
       if (Application.isManagerOf(user)) {
-        Dose.retrieveLastByUser(uId, last)
-        Ok("")
+        val doses = Dose.retrieveLastByUser(uId, last)
+        println(doses)
+        val gson = new Gson()
+        val jDoses = gson.toJson(doses)
+        println(jDoses)
+        Ok(jDoses)
       } else Results.Forbidden("Prohibido")
   }
 

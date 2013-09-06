@@ -10,8 +10,6 @@ import views._
 
 object Managers extends Controller with Secured{
   
-  
-
   def listByManagee(uId:Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
