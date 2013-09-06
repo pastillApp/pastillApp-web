@@ -1,6 +1,7 @@
 # This is the main configuration file for the application.
 # ~~~~~
 
+
 # Secret key
 # ~~~~~
 # The secret key is used to secure cryptographics functions.
@@ -34,7 +35,11 @@ application.langs="en"
 # By convention, the default datasource is named `default`
 #
 db.default.driver=com.mysql.jdbc.Driver
+<<<<<<< HEAD
+db.default.url="jdbc:mysql://156.35.98.41:3306/pastillappbd?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+=======
 db.default.url="jdbc:mysql://156.35.98.41/pastillappbd?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+>>>>>>> c3a16b94c7ff7226a7d34f5068293c7029f632b9
 db.default.user=pastillapp
 db.default.password=pastillapp
 
