@@ -84,7 +84,6 @@ object Dose {
         """
           update doses set period = {period}, amount = {amount}, measure = {measure}, medicine = {medicine}, created = {created}, updated = {updated},
           user_id = {user_id} where id = {id}
-          )
         """).on(
           'amount -> dose.amount,
           'measure -> dose.measure,
