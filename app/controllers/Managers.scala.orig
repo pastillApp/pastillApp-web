@@ -10,7 +10,14 @@ import views._
 
 object Managers extends Controller with Secured{
   
+<<<<<<< HEAD
+  val managerForm = Form(
+      "email" -> text)
+
+  def listByManagee(uId:Long) = IsAuthenticated { username =>
+=======
   def listByManagee(uId:Long) = IsAuthenticated { email =>
+>>>>>>> frontend
     implicit request =>
       val user = User.findById(uId).get
       if(Application.isManagerOf(user)) {
