@@ -4,7 +4,7 @@
         
         @helper.form(routes.Application.authenticate) {
             
-            <h1>Sign in</h1>
+            <h2>Sign in</h2>
             
             @form.globalError.map { error =>
                 <p class="error">
@@ -25,7 +25,7 @@
                 <input type="password" name="password" id="password" placeholder="Password">
             </p>
             <p>
-                <button type="submit" id="loginbutton">Login</button>
+                <button type="submit" class="myButton blue a100" id="loginbutton">Login</button>
             </p>
             
         }

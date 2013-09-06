@@ -1,4 +1,4 @@
-@(dose:Dose)(implicit flash:Flash, session:play.api.mvc.Session)
+@(dose:Dose, managees: Seq[models.User])(implicit flash:Flash, session:play.api.mvc.Session)
 
 @import Option._
 @import helper._
@@ -23,7 +23,11 @@
 	   </div>
 	   <div class="span12">
 	     <label title="User" for="user_id">User:</label><br>
-	     <input class="span12" class="span12" type="text" name="user_id" id="user_id" placeholder="Place the user" value="@dose.user.id.get"/>
+	     <select id="user_id" name="user_id" class="span12">
+	     	@for(managee <- managees){
+			<option @if(managee.id.get == dose.user.id.get){checked="checked"} value="@managee.id">@managee.name @managee.surname</option>
+			}
+		 </select>
 	   </div>
 	   <div class="span12">
 	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>

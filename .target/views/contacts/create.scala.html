@@ -1,19 +1,31 @@
-@()(implicit session:play.api.mvc.Session)
+@(id:Long)(implicit session:play.api.mvc.Session)
 @main("create contact"){
-	<form class="well">
-		<label>Telephone</label>
-		<input type="tel" id="telephone" name="telephone" />
-		<label>Name</label>
-		<input type="text" id="name" name="name" />
-		<label>Surname</label>
-		<input type="text" id="surname" name="surname" />
-		<label>Genre</label>
-		<select id="genre" name="genre">
-			<option value="U">Undefined</option>
-			<option value="M">Male</option>
-			<option value="F">Female</option>
-		</select>
-		<br/>
-		<input type="submit" class="btn btn-primary" value="Submit" />
+	<form method="POST" action="@routes.Contacts.create(id)">
+		<div class="span12">
+			<label>Name</label>
+			<input type="text" id="name" name="name" />
+		</div>
+		<div class="span12">
+			<label>Surname</label>
+			<input type="text" id="surname" name="surname" />
+		</div>
+		<div class="span12">
+			<label>Genre</label>
+			<select class="span12" id="genre" name="genre">
+				<option value="U">Undefined</option>
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+		</div>
+		<div class="span12">
+			<label>Telephone</label>
+			<input type="tel" id="telephone" name="telephone" />
+		</div>
+	   <div class="span12">
+	   	 <input type="submit" title="Submit" value="Check" class="btn btn-success span12"/>
+	   </div>
+	   <div class="span12">
+	   	 <a title="Cancel" href="@routes.Application.index" class="btn span12">Cancel</a>
+	   </div>
 	</form>
 }
