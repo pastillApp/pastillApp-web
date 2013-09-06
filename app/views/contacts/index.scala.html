@@ -1,15 +1,23 @@
-@(seq: Seq[Contact])(implicit session:play.api.mvc.Session)
+@(id:Long, seq: Seq[Contact])(implicit session:play.api.mvc.Session)
 @main("Index") {
-	<h1>pastillApp</h1>
-	<h2>Contacts</h2>
 	<ul class="unstyled">
 		@for(contact <- seq) {
-			<li class="row-fluid">
-				<span class="btn span10">@contact.name</span><a class="btn btn-danger span1 offset1">X</a>
-			</li>
+			<div class="myButton gray a70">
+				<h3>@contact.name @contact.surname</h3>
+				<p> </p>
+			</div>
+			<div class="a15">
+				<a href="@routes.Contacts.updateForm(contact.id.get)" title="Edit Contact" class="myButton blue a100 l98">Update</a>
+			</div>
+			<div class="a15">
+				<a href="@routes.Contacts.delete(contact.id.get)" title="Edit Contact" class="myButton red a100 l98" data-method="POST">Delete</a>
+			</div>
 		}
 	</ul>
-	<div class="row-fluid">
-		<span class="btn span12 btn-success">Add contact</span>
+	<div class="span12">
+		<a title="Add contact" href="@routes.Contacts.create(id)" class="btn span12">Add contact</a>
+	</div>
+	<div class="span12">
+	   	<a title="Cancel" href="@routes.Users.update(id)" class="btn span12">Cancel</a>
 	</div>
 }

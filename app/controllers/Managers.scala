@@ -12,7 +12,7 @@ object Managers extends Controller with Secured{
   
   
 
-  def listByManagee(uId:Long) = IsAuthenticated { username =>
+  def listByManagee(uId:Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
       if(Application.isManagerOf(user)) {
@@ -22,10 +22,10 @@ object Managers extends Controller with Secured{
         
   }
   
-  def listByManager(uId:Long) = IsAuthenticated {username =>
+  def listByManager(uId:Long) = IsAuthenticated { email =>
   	implicit request => 
   	  val user = User.findById(uId).get
-  	  val aUser = User.findByEmail(username).get
+  	  val aUser = User.findByEmail(email).get
   	  if(user.id == aUser.id) {
   	    User.getManageesByManagerId(uId)
   	    Ok("Listed managees")

@@ -18,22 +18,21 @@ POST    /user/:id/update                   controllers.Users.update(id:Long)
 DELETE  /user/:id                          controllers.Users.delete(id:Long)
 
 # Contact Crud
-GET     /user/:uId/contact						controllers.Contacts.listByUser(uId:Long)
-#GET	 /contact/:id					    controllers.Contacts.get(id:Long)
+GET     /user/:uId/contact					controllers.Contacts.listByUser(uId:Long)
+GET	 	/contact/:id					    	controllers.Contacts.get(id:Long)
 GET		/contact/:id/create					controllers.Contacts.createForm(id:Long)
-POST    /contact/:uId/create                 controllers.Contacts.create(uId:Long)
+POST    /contact/:uId/create                controllers.Contacts.create(uId:Long)
 GET		/contact/:id/update					controllers.Contacts.updateForm(id:Long)
 POST	/contact/:id/update					controllers.Contacts.update(id:Long)
-#PUT     /contact/:id                          controllers.Contacts.update(id:Long)
-#DELETE  /contact/:id                          controllers.Contacts.delete(id:Long)
+POST  	/contact/:id/delete                 controllers.Contacts.delete(id:Long)
 
 # Dose Crud
-GET     /user/:uId/dose          				controllers.Doses.listByUser(uId:Long)
-GET     /user/:uId/dose/create              	controllers.Doses.createForm(uId:Long)
-POST    /user/:uId/dose/create              	controllers.Doses.create(uId:Long)
-GET     /dose/:dId/update           				controllers.Doses.updateForm(dId:Long)
-POST    /dose/:dId/update           				controllers.Doses.update(dId:Long)
-POST  	/dose/:dId/delete         				controllers.Doses.delete(dId:Long)
+GET     /user/:uId/dose          			controllers.Doses.listByUser(uId:Long)
+GET     /user/:uId/dose/create              controllers.Doses.createForm(uId:Long)
+POST    /user/:uId/dose/create              controllers.Doses.create(uId:Long)
+GET     /dose/:dId/update           		controllers.Doses.updateForm(dId:Long)
+POST    /dose/:dId/update           		controllers.Doses.update(dId:Long)
+POST  	/dose/:dId/delete         			controllers.Doses.delete(dId:Long)
 
 # Manager Crud
 GET     /user/:uId/manager			         controllers.Managers.listByManagee(uId:Long)

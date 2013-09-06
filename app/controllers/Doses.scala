@@ -22,7 +22,7 @@ object Doses extends Controller with Secured {
   /**
    * Add a project.
    */
-  def create(uId: Long) = IsAuthenticated { username =>
+  def create(uId: Long) = IsAuthenticated { email =>
     implicit request =>
       doseForm.bindFromRequest.fold(
         errors => BadRequest("Petó"),
@@ -38,7 +38,7 @@ object Doses extends Controller with Secured {
         })
   }
 
-  def update(dId: Long) = IsAuthenticated { username =>
+  def update(dId: Long) = IsAuthenticated { email =>
     implicit request =>
       doseForm.bindFromRequest.fold(
         errors => BadRequest("Petó"),
@@ -56,7 +56,7 @@ object Doses extends Controller with Secured {
   /**
    * Add a project.
    */
-  def delete(id: Long) = IsAuthenticated { username =>
+  def delete(id: Long) = IsAuthenticated { email =>
     implicit request =>
       val dose = Dose.findById(id).get
       if (Application.isManagerOf(dose.user)) {
@@ -68,7 +68,7 @@ object Doses extends Controller with Secured {
   /**
    * List all doses by an user Id
    */
-  def listByUser(uId: Long) = IsAuthenticated { username =>
+  def listByUser(uId: Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
       if (Application.isManagerOf(user)) {
@@ -76,7 +76,7 @@ object Doses extends Controller with Secured {
       } else Results.Forbidden("Prohibido")
   }
 
-  def get(dId: Long) = IsAuthenticated { username =>
+  def get(dId: Long) = IsAuthenticated { email =>
     implicit request =>
       val dose = Dose.findById(dId).get
       if (Application.isManagerOf(dose.user)) {
@@ -84,7 +84,7 @@ object Doses extends Controller with Secured {
       } else Results.Forbidden("Prohibido")
   }
 
-  def createForm(uId: Long) = IsAuthenticated { username =>
+  def createForm(uId: Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
       val managees = User.getManageesByManagerId(user.id.get) ++ List(user)
@@ -93,18 +93,18 @@ object Doses extends Controller with Secured {
       } else NotFound("404")
   }
 
-  def updateForm(dId: Long)= IsAuthenticated { username =>
+  def updateForm(dId: Long)= IsAuthenticated { email =>
     implicit request =>
       Dose.findById(dId) match {
         case Some(dose) =>
-          val user = User.findByEmail(username).get
+          val user = User.findByEmail(email).get
           val managees = User.getManageesByManagerId(user.id.get) ++ List(user)
           Ok(html.doses.update(dose, managees))
         case _ => NotFound("404")
       }
   }
 
-  def retrieveDosesByUser(uId: Long, last: Long) = IsAuthenticated { username =>
+  def retrieveDosesByUser(uId: Long, last: Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
       if (Application.isManagerOf(user)) {

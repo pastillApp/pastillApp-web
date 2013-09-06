@@ -25,7 +25,7 @@
 	     <label title="User" for="user_id">User:</label><br>
 	     <select id="user_id" name="user_id" class="span12">
 	     	@for(managee <- managees){
-			<option @if(managee.id.get == dose.user.id.get){checked="checked"} value="@managee.id">@managee.name @managee.surname</option>
+			<option @if(managee.id.get == dose.user.id.get){selected} value="@managee.id">@managee.name @managee.surname</option>
 			}
 		 </select>
 	   </div>

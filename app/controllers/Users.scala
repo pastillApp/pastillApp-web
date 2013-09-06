@@ -38,7 +38,7 @@ object Users extends Controller with Secured {
   /**
    * Delete a project.
    */
-  def update(id: Long) = IsAuthenticated { username =>
+  def update(id: Long) = IsAuthenticated { email =>
     implicit request =>
       userForm.bindFromRequest.fold(
         errors => BadRequest,
@@ -53,7 +53,7 @@ object Users extends Controller with Secured {
   /**
    * Delete a project.
    */
-  def delete(id: Long) = IsAuthenticated { username =>
+  def delete(id: Long) = IsAuthenticated { email =>
     implicit request =>
       val currentUser = User.findByEmail(request.session.get("email").get).get
       println(currentUser.id)
@@ -66,7 +66,7 @@ object Users extends Controller with Secured {
 
   }
   
-  def updateForm(id:Long) = IsAuthenticated {username =>
+  def updateForm(id:Long) = IsAuthenticated { email =>
     implicit request => 
 	  User.findById(id) match {
         case Some(user) => Ok(html.users.update(user))
@@ -74,7 +74,7 @@ object Users extends Controller with Secured {
       }
   }
   
-  def createForm(id:Long) = IsAuthenticated{username => 
+  def createForm(id:Long) = IsAuthenticated{ email => 
     implicit request => 
       val user = User.findById(id).get
       if (Application.isManagerOf(user)) {

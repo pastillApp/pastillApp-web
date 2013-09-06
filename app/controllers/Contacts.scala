@@ -8,86 +8,82 @@ import play.api.data.Forms._
 import models._
 import views._
 
-object Contacts extends Controller with Secured{
+object Contacts extends Controller with Secured {
 
   val contactForm = Form(
     tuple(
       "name" -> text,
       "surname" -> text,
       "genre" -> text,
-      "telephone" -> text,
-      "user_id" -> number))
-      
-      
-  def create(uId:Long) = IsAuthenticated { username =>
+      "telephone" -> text))
+
+  def create(uId: Long) = IsAuthenticated { email =>
     implicit request =>
       contactForm.bindFromRequest.fold(
-        errors => BadRequest,
+        errors => BadRequest("Petó"),
         {
-          case (name, surname, genre, telephone, user_id) =>
-            val user = User.findById(user_id).get
+          case (name, surname, genre, telephone) =>
+            val user = User.findByEmail(email).get
             if (Application.isManagerOf(user)) {
               val contact = Contact.create(
                 Contact(None, name, surname, genre, telephone, user))
-              Ok("create")
-            } else Results.Forbidden
+              Redirect(routes.Contacts.listByUser(contact.user.id.get))
+            } else Results.Forbidden("Prohibido")
         })
   }
-  
-  def get(id:Long) = IsAuthenticated { username => 
+
+  def get(id: Long) = IsAuthenticated { email =>
     implicit request =>
       val contact = Contact.findById(id).get
-      if(Application.isManagerOf(contact.user)) {
+      if (Application.isManagerOf(contact.user)) {
         Ok("get")
-      } else Results.Forbidden
-    
+      } else Results.Forbidden("Prohibido")
   }
-  
-  def listByUser(uId:Long) = IsAuthenticated { username =>
+
+  def listByUser(uId: Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(uId).get
       if (Application.isManagerOf(user)) {
-        //Dose.delete(uId)
-        Contact.findByUser(user)
-        Ok("listed")
-      } else Results.Forbidden
+        val contacts = Contact.findByUser(user)
+        Ok(html.contacts.index(user.id.get, contacts))
+      } else Results.Forbidden("Prohibido")
   }
-  
-  def update(id:Long) = IsAuthenticated { username =>
+
+  def update(id: Long) = IsAuthenticated { email =>
     implicit request =>
       contactForm.bindFromRequest.fold(
         errors => BadRequest,
         {
-          case (name, surname, genre, telephone, user_id) =>
+          case (name, surname, genre, telephone) =>
             val contact = Contact.findById(id).get
             if (Application.isManagerOf(contact.user)) {
-              Contact.update(Contact(Some(id), name, surname, genre, telephone, User.findById(user_id).get))
-              Ok("edited")
-            } else Results.Forbidden
-        })   
+              Contact.update(Contact(Some(id), name, surname, genre, telephone, User.findByEmail(email).get))
+              Redirect(routes.Contacts.listByUser(contact.user.id.get))
+            } else Results.Forbidden("Prohibido")
+        })
   }
-  
-  def delete(id:Long) = IsAuthenticated { username =>
+
+  def delete(id: Long) = IsAuthenticated { email =>
     implicit request =>
       val contact = Contact.findById(id).get
       if (Application.isManagerOf(contact.user)) {
         Contact.delete(id)
-        Ok("deleted")
-      } else Results.Forbidden
+        Redirect(routes.Contacts.listByUser(contact.user.id.get))
+      } else Results.Forbidden("Prohibido")
   }
-  
-  def createForm(id: Long) = IsAuthenticated { username =>
+
+  def createForm(id: Long) = IsAuthenticated { email =>
     implicit request =>
       val user = User.findById(id).get
       if (Application.isManagerOf(user)) {
         Ok(html.contacts.create(id))
       } else NotFound("404")
   }
-  
+
   def updateForm(id: Long) = Action {
     implicit request =>
       Contact.findById(id) match {
-        case Some(contact) => Ok(html.contacts.update())
+        case Some(contact) => Ok(html.contacts.update(Contact.findById(id).get))
         case _ => NotFound("404")
       }
   }
