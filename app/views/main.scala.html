@@ -9,6 +9,7 @@
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <link href="@routes.Assets.at("stylesheets/bootstrap.css")" rel="stylesheet">
         <link href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")" rel="stylesheet">
+        <meta name="viewport" content="width=device-width"/>
     </head>
     <body>
     	<div class="container-fluid header">
@@ -19,7 +20,6 @@
 			          @if(!session.get("id").isEmpty){
 			          	<li><a href="@routes.Users.update(session.get("id").get.toInt)">Settings</a></li>
 			          }
-			          <li><a href="#">About</a></li>
 			        </ul>
 	        		<img id="logo" src="@routes.Assets.at("images/logo.png")" />
 	        		<h3 id="pixel">pastillApp</h3>

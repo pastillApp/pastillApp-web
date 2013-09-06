@@ -1,15 +1,14 @@
 @(seq: Seq[User])(implicit session:play.api.mvc.Session)
 @main("Index manager") {
-	<h1>pastillApp</h1>
 	<h2>Managers</h2>
 	<ul class="unstyled">
 		@for(manager <- seq) {
 			<li class="row-fluid">
-				<span class="btn span10">@manager.name</span><!--  <a class="btn btn-danger span1 offset1">X</a>-->
+				<span class="myButton gray a100">@manager.name</span><!--  <a class="btn btn-danger span1 offset1">X</a>-->
 			</li>
 		}
 	</ul>
 	<div class="row-fluid">
-		<a class="btn span12 btn-success" href="@routes.Managers.create(session.get("id").get.toLong)">Add manager</a>
+		<a class="myButton blue a100" href="@routes.Managers.create(session.get("id").get.toLong)">Add manager</a>
 	</div>
 }

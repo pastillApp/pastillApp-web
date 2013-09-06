@@ -17,6 +17,8 @@
 
 .content {
 	padding-top: 80px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .nav {
@@ -25,7 +27,7 @@
 
 #pixel {
 	font-family:'pixel-condensada',"Gill Sans",helvetica,arial;
-	font-size: 2.5em;
+	font-size: 1.5em;
 	color: #fff;
 }
 
@@ -70,7 +72,7 @@
 .myButton {
 	display:inline-block;
 	margin-bottom:10px;
-	font-size:14px;
+	font-size:12px;
 	line-height:20px;
 	color:#333;
 	text-align:center;
@@ -93,6 +95,14 @@
 
 .blue {
 	background-color:#5382bc;
+	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	color: #fff;
+}
+
+.yellow {
+	background-color:#e0c53a;
 	-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
 	-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
 	box-shadow:inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
