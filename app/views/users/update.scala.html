@@ -34,7 +34,7 @@
 	     <input type="tel" name="telephone" id="telephone" placeholder="" value="@user.telephone"/>
 	   </div>
 	   <div class="">
-	   	 <a title="Add contact" href="@routes.Contacts.create(user.id.get)" class="myButton green a100">Add contact</a>
+	   	 <a title="Contact" href="@routes.Contacts.listByUser(user.id.get)" class="myButton green a100">List Contacts</a>
 	   </div>
 	   <div class="">
 	   	 <input type="submit" title="Submit" value="OK" class="myButton blue a100"/>

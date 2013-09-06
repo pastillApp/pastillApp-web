@@ -1,6 +1,6 @@
 @(contact:Contact)(implicit session:play.api.mvc.Session)
 @main("create contact"){
-	<form method="POST" action="@routes.Contacts.create(id)">
+	<form method="POST" action="@routes.Contacts.update(contact.id.get)">
 		<div class="span12">
 			<label>Name</label>
 			<input type="text" id="name" name="name" value="@contact.name" />
